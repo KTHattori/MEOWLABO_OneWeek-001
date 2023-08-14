@@ -109,7 +109,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FirstShadeStep: 0.066
+    - _FirstShadeStep: 0.045
     - _FloatPosterize: 1
     - _FloatingFreq: 2.5
     - _FloatingHeight: 0.1
@@ -123,7 +123,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SecondShadeStep: 0.034
+    - _SecondShadeStep: 0.019
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

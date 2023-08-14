@@ -39,11 +39,11 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _FirstShadeStep: 0.463
+    - _FirstShadeStep: 0.926
     - _RimLight: 1
-    - _RimRightCoverage: 0.219
+    - _RimRightCoverage: 0.157
     m_Colors:
-    - _BaseColor: {r: 0.5058706, g: 0.4703809, b: 0.6886792, a: 1}
+    - _BaseColor: {r: 0.55805165, g: 0.53303665, b: 0.8773585, a: 1}
     - _FirstShadeColor: {r: 0.2250267, g: 0.5164784, b: 0.8113208, a: 1}
     - _RimRightColor: {r: 0.7864038, g: 0.44705883, b: 0.85882354, a: 1}
     - _SecondShadeColor: {r: 0.2798824, g: 0.15307938, b: 0.4716981, a: 1}
