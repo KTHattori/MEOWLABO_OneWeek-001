@@ -265,6 +265,169 @@ namespace Interpolation
 		[引数]
 		float	startValue 　開始地点の値
 		float	targetValue	 最終地点の値
+		float	factor		 係数
+		Type	type		 イージングの種類
+		Style	style		 補間スタイル
+
+		[戻り値]
+		float	イージング係数に基づいた値
+		*/
+		public static float Ease(float startValue,float targetValue,float factor, Type type, Style style = Style.Sine)
+		{
+			factor = Mathf.Clamp(factor,0.0f,1.0f);
+
+			switch (type)
+			{
+			case Easing.Type.Linear:
+				return Linear(startValue,targetValue,0.0f, factor);
+			case Easing.Type.In:
+				return EaseIn(startValue,targetValue,0.0f, factor, style);
+			case Easing.Type.Out:
+				return EaseOut(startValue, targetValue, 0.0f, factor, style);
+			case Easing.Type.InOut:
+				return EaseInOut(startValue, targetValue, 0.0f, factor, style);
+			default:
+				return 0.0f;
+			}
+		}
+
+		// --- returns INTERPOLATED VALUE <Vector2> by easing progress ---
+		/*
+		[引数]
+		Vector2	startValue 　開始地点の値
+		Vector2	targetValue	 最終地点の値
+		float	factor		 係数
+		Type	type		 イージングの種類
+		Style	style		 補間スタイル
+
+		[戻り値]
+		Vector2	イージング係数に基づいた値
+		*/
+		public static Vector2 Ease(Vector2 startValue,Vector2 targetValue,float factor, Type type, Style style = Style.Sine)
+		{
+			factor = Mathf.Clamp(factor,0.0f,1.0f);
+
+			Vector2 value;
+			switch (type)
+			{
+			case Easing.Type.Linear:
+				value.x = Linear(startValue.x,targetValue.x,0.0f, factor);
+				value.y = Linear(startValue.y,targetValue.y,0.0f, factor);
+				return value;
+			case Easing.Type.In:
+				value.x = EaseIn(startValue.x,targetValue.x,0.0f, factor, style);
+				value.y = EaseIn(startValue.y,targetValue.y,0.0f, factor, style);
+				return value;
+			case Easing.Type.Out:
+				value.x = EaseOut(startValue.x,targetValue.x,0.0f, factor, style);
+				value.y = EaseOut(startValue.y,targetValue.y,0.0f, factor, style);
+				return value;
+			case Easing.Type.InOut:
+				value.x = EaseInOut(startValue.x,targetValue.x,0.0f, factor, style);
+				value.y = EaseInOut(startValue.y,targetValue.y,0.0f, factor, style);
+				return value;
+			default:
+				return new Vector2(0.0f,0.0f);
+			}
+		}
+
+		// --- returns INTERPOLATED VALUE <Vector3> by easing progress ---
+		/*
+		[引数]
+		Vector3	startValue 　開始地点の値
+		Vector3	targetValue	 最終地点の値
+		float	factor		 係数
+		Type	type		 イージングの種類
+		Style	style		 補間スタイル
+
+		[戻り値]
+		Vector3	イージング係数に基づいた値
+		*/
+		public static Vector3 Ease(Vector3 startValue,Vector3 targetValue,float factor, Type type, Style style = Style.Sine)
+		{
+			factor = Mathf.Clamp(factor,0.0f,1.0f);
+
+			Vector3 value;
+			switch (type)
+			{
+			case Easing.Type.Linear:
+				value.x = Linear(startValue.x,targetValue.x,0.0f, factor);
+				value.y = Linear(startValue.y,targetValue.y,0.0f, factor);
+				value.z = Linear(startValue.z,targetValue.z,0.0f, factor);
+				return value;
+			case Easing.Type.In:
+				value.x = EaseIn(startValue.x,targetValue.x,0.0f, factor, style);
+				value.y = EaseIn(startValue.y,targetValue.y,0.0f, factor, style);
+				value.z = EaseIn(startValue.z,targetValue.z,0.0f, factor, style);
+				return value;
+			case Easing.Type.Out:
+				value.x = EaseOut(startValue.x,targetValue.x,0.0f, factor, style);
+				value.y = EaseOut(startValue.y,targetValue.y,0.0f, factor, style);
+				value.z = EaseOut(startValue.z,targetValue.z,0.0f, factor, style);
+				return value;
+			case Easing.Type.InOut:
+				value.x = EaseInOut(startValue.x,targetValue.x,0.0f, factor, style);
+				value.y = EaseInOut(startValue.y,targetValue.y,0.0f, factor, style);
+				value.z = EaseInOut(startValue.z,targetValue.z,0.0f, factor, style);
+				return value;
+			default:
+				return Vector3.zero;
+			}
+		}
+
+		// --- returns INTERPOLATED VALUE <Vector4> by easing progress ---
+		/*
+		[引数]
+		Vector4	startValue 　開始地点の値
+		Vector4	targetValue	 最終地点の値
+		float	factor		 係数
+		Type	type		 イージングの種類
+		Style	style		 補間スタイル
+
+		[戻り値]
+		Vector4	イージング係数に基づいた値
+		*/
+		public static Vector4 Ease(Vector4 startValue,Vector4 targetValue,float factor, Type type, Style style = Style.Sine)
+		{
+			factor = Mathf.Clamp(factor,0.0f,1.0f);
+
+			Vector4 value;
+			switch (type)
+			{
+			case Easing.Type.Linear:
+				value.x = Linear(startValue.x,targetValue.x,0.0f, factor);
+				value.y = Linear(startValue.y,targetValue.y,0.0f, factor);
+				value.z = Linear(startValue.z,targetValue.z,0.0f, factor);
+				value.w = Linear(startValue.w,targetValue.w,0.0f, factor);
+				return value;
+			case Easing.Type.In:
+				value.x = EaseIn(startValue.x,targetValue.x,0.0f, factor, style);
+				value.y = EaseIn(startValue.y,targetValue.y,0.0f, factor, style);
+				value.z = EaseIn(startValue.z,targetValue.z,0.0f, factor, style);
+				value.w = EaseIn(startValue.w,targetValue.w,0.0f, factor, style);
+				return value;
+			case Easing.Type.Out:
+				value.x = EaseOut(startValue.x,targetValue.x,0.0f, factor, style);
+				value.y = EaseOut(startValue.y,targetValue.y,0.0f, factor, style);
+				value.z = EaseOut(startValue.z,targetValue.z,0.0f, factor, style);
+				value.w = EaseOut(startValue.w,targetValue.w,0.0f, factor, style);
+				return value;
+			case Easing.Type.InOut:
+				value.x = EaseInOut(startValue.x,targetValue.x,0.0f, factor, style);
+				value.y = EaseInOut(startValue.y,targetValue.y,0.0f, factor, style);
+				value.z = EaseInOut(startValue.z,targetValue.z,0.0f, factor, style);
+				value.w = EaseInOut(startValue.w,targetValue.w,0.0f, factor, style);
+				return value;
+			default:
+				return Vector4.zero;
+			}
+		}
+
+		// --- returns INTERPOLATED VALUE <float> by easing progress ---
+		/*
+		[引数]
+		float	startValue 　開始地点の値
+		float	targetValue	 最終地点の値
 		float	currentTime	 現在の経過時間
 		float	totalTime	 イージングの総時間
 		Type	type		 イージングの種類
@@ -325,6 +488,7 @@ namespace Interpolation
 			case Easing.Type.Linear:
 				value.x = Linear(startValue.x,targetValue.x,currentTime, totalTime);
 				value.y = Linear(startValue.y,targetValue.y,currentTime, totalTime);
+
 				return value;
 			case Easing.Type.In:
 				value.x = EaseIn(startValue.x,targetValue.x,currentTime, totalTime, style);
@@ -599,6 +763,74 @@ namespace Interpolation
 		public static Color EaseColor(Color startValue,Color targetValue,float currentTime, float totalTime, Curve curve)
 		{
 			return Ease(startValue,targetValue,currentTime,totalTime,curve.type,curve.style);
+		}
+
+		// --- returns INTERPOLATED VALUE <float> by easing progress ---
+		/*
+		[引数]
+		float	startValue 　開始地点の値
+		float	targetValue	 最終地点の値
+		float	currentTime	 現在の経過時間
+		float	totalTime	 イージングの総時間
+		Curve	curve		 カーブの種類
+
+		[戻り値]
+		float	イージング係数に基づいた値
+		*/
+		public static float Ease(float startValue,float targetValue,float factor, Curve curve)
+		{
+			return Ease(startValue,targetValue,factor,curve.type,curve.style);
+		}
+
+		// --- returns INTERPOLATED VALUE <Vector2> by easing progress ---
+		/*
+		[引数]
+		Vector2	startValue 　開始地点の値
+		Vector2	targetValue	 最終地点の値
+		float	currentTime	 現在の経過時間
+		float	totalTime	 イージングの総時間
+		Curve	curve		 カーブの種類
+
+		[戻り値]
+		Vector2	イージング係数に基づいた値
+		*/
+		public static Vector2 Ease(Vector2 startValue,Vector2 targetValue,float factor, Curve curve)
+		{
+			return Ease(startValue,targetValue,factor,curve.type,curve.style);
+		}
+
+		// --- returns INTERPOLATED VALUE <Vector3> by easing progress ---
+		/*
+		[引数]
+		Vector3	startValue 　開始地点の値
+		Vector3	targetValue	 最終地点の値
+		float	currentTime	 現在の経過時間
+		float	totalTime	 イージングの総時間
+		Curve	curve		 カーブの種類
+
+		[戻り値]
+		Vector3	イージング係数に基づいた値
+		*/
+		public static Vector3 Ease(Vector3 startValue,Vector3 targetValue,float factor, Curve curve)
+		{
+			return Ease(startValue,targetValue,factor,curve.type,curve.style);
+		}
+
+		// --- returns INTERPOLATED VALUE <Vector4> by easing progress ---
+		/*
+		[引数]
+		Vector4	startValue 　開始地点の値
+		Vector4	targetValue	 最終地点の値
+		float	currentTime	 現在の経過時間
+		float	totalTime	 イージングの総時間
+		Curve	curve		 カーブの種類
+
+		[戻り値]
+		Vector4	イージング係数に基づいた値
+		*/
+		public static Vector4 Ease(Vector4 startValue,Vector4 targetValue,float factor, Curve curve)
+		{
+			return Ease(startValue,targetValue,factor,curve.type,curve.style);
 		}
 
 		

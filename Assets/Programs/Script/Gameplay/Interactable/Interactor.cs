@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
-    private bool isInteracting = false;
-    private bool isInteractable = false;
-    [SerializeField] private List<GameObject> interactablesInRange = new List<GameObject>();
-    [SerializeField] private Interactable nearestInteractable = null;
+    protected bool isInteracting = false;
+    protected bool isInteractable = false;
+    [SerializeField] protected List<GameObject> interactablesInRange = new List<GameObject>();
+    [SerializeField] protected Interactable nearestInteractable = null;
+
+    public GameObject NearestObject
+    {
+        get
+        {
+            if(nearestInteractable == null) return null;
+            return nearestInteractable.gameObject;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +30,7 @@ public class Interactor : MonoBehaviour
         
     }
 
-    void UpdateNearestInteractable()
+    protected void UpdateNearestInteractable()
     {
         float minDistance = Mathf.Infinity;
         GameObject nearestObj = null;
@@ -50,7 +59,7 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Interactable")
         {
@@ -60,7 +69,7 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    protected void OnTriggerExit(Collider other)
     {
         if(other.tag == "Interactable")
         {
@@ -70,7 +79,7 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision other) {
+    protected void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Interactable"))
         {
             Debug.Log(other.gameObject.name);
@@ -79,7 +88,7 @@ public class Interactor : MonoBehaviour
         } 
     }
 
-    void OnCollisionExit(Collision other) {
+    protected void OnCollisionExit(Collision other) {
         if(other.gameObject.CompareTag("Interactable"))
         {
             Debug.Log(other.gameObject.name);

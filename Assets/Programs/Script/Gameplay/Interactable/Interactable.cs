@@ -14,6 +14,7 @@ public class Interactable : MonoBehaviour
     void Reset()
     {
         material = GetComponentInChildren<MeshRenderer>().sharedMaterial;
+        gameObject.tag = "Interactable";
     }
 
     void Start()

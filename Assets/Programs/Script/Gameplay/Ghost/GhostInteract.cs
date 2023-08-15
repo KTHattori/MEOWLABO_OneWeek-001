@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class GhostInteract : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Interactor interactor;
+
+    public bool IsExistNearestObject
     {
-        
+        get
+        {
+            return interactor.NearestObject != null;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        
+        interactor = GetComponent<Interactor>();
     }
+    
+
 }
