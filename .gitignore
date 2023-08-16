@@ -81,6 +81,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]creenShots/
 
 # --- Except Font Folder --- #
-# /[Aa]ssets/[Rr]esources/
+/[Aa]ssets/[Rr]esources/[Ff]onts/[Tt][Mm][Pp]/
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
