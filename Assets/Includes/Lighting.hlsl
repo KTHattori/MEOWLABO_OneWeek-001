@@ -33,12 +33,11 @@ void CalculateMainLight_float(float3 WorldPos, out float3 Direction, out float3 
 		ShadowAttenuation = SampleShadowmap(shadowCoord,
 		TEXTURE2D_ARGS(_MainLightShadowmapTexture,sampler_MainLightShadowmapTexture),
 		shadowSamplingData, shadowStrength,false);
-		
 	#endif
 #endif
 }
 
-void AddAdditionalLights_float(float Smoothness, float3 WorldPos, float3 WorldNormal, float3 WorldView,
+void AddAdditionalLights_float(float Smoothness, float3 WorldPosition, float3 WorldNormal, float3 WorldView,
 		float MainDiffuse, float MainSpecular, float3 MainColor, 
 		out float Diffuse, out float Specular, out float3 Color)
 {
@@ -53,7 +52,7 @@ void AddAdditionalLights_float(float Smoothness, float3 WorldPos, float3 WorldNo
 	// loop over pixel lights
 	for(int i = 0;i < count;++i)
 	{
-		Light light = GetAdditionalLight(i,WorldPos);
+		Light light = GetAdditionalLight(i,WorldPosition);
 		float NdotL = saturate(dot(WorldNormal,light.direction));
 		float atten = light.distanceAttenuation * light.shadowAttenuation;
 		float thisDiffuse = atten * NdotL;

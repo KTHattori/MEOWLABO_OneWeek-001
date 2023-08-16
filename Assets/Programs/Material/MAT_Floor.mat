@@ -29,9 +29,9 @@ Material:
   - ADDITIONAL_LIGHT_CALCULATE_SHADOWS
   - _MAIN_LIGHT_SHADOWS
   - _MAIN_LIGHT_SHADOW_CASCADE
-  - _SHADOWS_SOFT
   m_InvalidKeywords:
   - MAIN_LIGHT_CALCULATE_SHADOWS
+  - _SHADOWS_SOFT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -135,7 +135,7 @@ Material:
     - _RimLightEnabled: 0
     - _RimRightCoverage: 0
     - _SecondShadeStep: 0.5
-    - _Smoothness: 0.438
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -149,7 +149,7 @@ Material:
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FirstShadeColor: {r: 0, g: 0.32489157, b: 0.6603774, a: 1}
-    - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HighlightColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimRightColor: {r: 1, g: 1, b: 1, a: 1}
     - _SecondShadeColor: {r: 0.015735103, g: 0.07304227, b: 0.49056602, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

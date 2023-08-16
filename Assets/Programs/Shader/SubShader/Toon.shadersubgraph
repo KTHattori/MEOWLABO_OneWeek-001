@@ -33,9 +33,6 @@
             "m_Id": "26ea5384e0f64204ad710dd6c67f0f4a"
         },
         {
-            "m_Id": "7cf481ae3fa04088a208eddaf5a02a6d"
-        },
-        {
             "m_Id": "b3b06df2c00840fdb07f5581c49475fe"
         },
         {
@@ -2564,31 +2561,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
-    "m_ObjectId": "7cf481ae3fa04088a208eddaf5a02a6d",
-    "m_Guid": {
-        "m_GuidSerialized": "9ae6a18e-ee2d-4156-9a60-924484cc2c0f"
-    },
-    "m_Name": "Soft Shadows",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Soft Shadows",
-    "m_DefaultReferenceName": "_SOFT_SHADOWS",
-    "m_OverrideReferenceName": "_SHADOWS_SOFT",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_KeywordType": 0,
-    "m_KeywordDefinition": 1,
-    "m_KeywordScope": 1,
-    "m_KeywordStages": 2,
-    "m_Entries": [],
-    "m_Value": 0,
-    "m_IsEditable": true
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicValueMaterialSlot",
     "m_ObjectId": "7dfa0056c111422b9d6a026ceb8bf6f3",
@@ -3303,9 +3275,6 @@
         },
         {
             "m_Id": "26ea5384e0f64204ad710dd6c67f0f4a"
-        },
-        {
-            "m_Id": "7cf481ae3fa04088a208eddaf5a02a6d"
         },
         {
             "m_Id": "5d9234c926ab4aaaa1d07d2b0d4ef542"
