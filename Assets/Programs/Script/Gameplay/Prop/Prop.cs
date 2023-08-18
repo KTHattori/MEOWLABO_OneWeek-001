@@ -27,6 +27,10 @@ public class Prop : MonoBehaviour
             int mats = renderer.sharedMaterials.Length;
             for(int i = 0;i < mats;i++)
             {
+                if(i < copiedMaterials.Count && copiedMaterials[i] != null)
+                {
+                    Destroy(copiedMaterials[i]);
+                }
                 copiedMaterials.Add(null);
             }
         }
@@ -34,16 +38,9 @@ public class Prop : MonoBehaviour
 
     void Start()
     {
-        renderers.Clear();
-        copiedMaterials.Clear();
-        renderers.AddRange(GetComponentsInChildren<Renderer>());
-        foreach(var renderer in renderers)
+        if(renderers.Count != GetComponentsInChildren<Renderer>().Length)
         {
-            int mats = renderer.sharedMaterials.Length;
-            for(int i = 0;i < mats;i++)
-            {
-                copiedMaterials.Add(null);
-            }
+            Reset();
         }
     }
 
