@@ -7,8 +7,10 @@ public class Ghost : MonoSingleton<Ghost>
     public enum State
     {
         [InspectorName("出現")]
-        Appear,
-        [InspectorName("移動(通常時)")]
+        Emerge,
+        [InspectorName("待機")]
+        Idle,
+        [InspectorName("移動")]
         Move,
         [InspectorName("インタラクト中")]
         Interact,
@@ -19,7 +21,7 @@ public class Ghost : MonoSingleton<Ghost>
     }
 
     [System.Serializable]
-    public class AppearData
+    public class EmergeData
     {
         public float time = 1.0f;
         public Vector3 position = Vector3.zero;
@@ -28,7 +30,13 @@ public class Ghost : MonoSingleton<Ghost>
     [System.Serializable]
     public class MoveData
     {
-        public float speed = 1.0f;
+        public float minSpeed = 1.0f;
+        public float maxSpeed = 2.0f;
+        public float tiltRange = 30.0f;
+        public string targetLayerMaskName = "PlayerMovementGuide";
+        public float arrivedRange = 0.1f;
+
+        public LayerMask TargetLayerMask { get { return LayerMask.NameToLayer(targetLayerMaskName); } }
     }
 
     [System.Serializable]
@@ -36,13 +44,11 @@ public class Ghost : MonoSingleton<Ghost>
     {
         public float time = 1.0f;
         public float range = 1.0f;
-        public GameObject target = null;
     }
 
     [System.Serializable]
     public class EventData
     {
-
 
     }
 
@@ -52,9 +58,8 @@ public class Ghost : MonoSingleton<Ghost>
         public float time = 1.0f;
     }
 
-
     [SerializeField]
-    private State state = State.Appear;
+    private State state = State.Emerge;
 
     public void SetState(State state)
     {
@@ -67,7 +72,7 @@ public class Ghost : MonoSingleton<Ghost>
     }
 
     [SerializeField]
-    private AppearData appearData = new AppearData();
+    private EmergeData emergeData = new EmergeData();
 
     [SerializeField]
     private MoveData moveData = new MoveData();
@@ -96,9 +101,9 @@ public class Ghost : MonoSingleton<Ghost>
         get { return eventData; }
     }
 
-    public AppearData Appear
+    public EmergeData Emerge
     {
-        get { return appearData; }
+        get { return emergeData; }
     }
 
     public DisappearData Disappear
@@ -108,7 +113,7 @@ public class Ghost : MonoSingleton<Ghost>
 
 
     private GhostMove ghostMove = null;
-    private GhostInput ghostInput = null;
+    private GhostSelect ghostSelect = null;
     private GhostInteract ghostInteract = null;
 
     [SerializeField]
@@ -117,7 +122,7 @@ public class Ghost : MonoSingleton<Ghost>
     void Reset()
     {
         ghostMove = GetComponent<GhostMove>();
-        ghostInput = GetComponent<GhostInput>();
+        ghostSelect = GetComponent<GhostSelect>();
         ghostInteract = GetComponent<GhostInteract>();
     }
 
@@ -127,7 +132,7 @@ public class Ghost : MonoSingleton<Ghost>
     void Start()
     {
         ghostMove = GetComponent<GhostMove>();
-        ghostInput = GetComponent<GhostInput>();
+        ghostSelect = GetComponent<GhostSelect>();
         ghostInteract = GetComponent<GhostInteract>();
     }
 
@@ -144,8 +149,11 @@ public class Ghost : MonoSingleton<Ghost>
     {
         switch (state)
         {
-            case State.Appear:
-                OnAppear();
+            case State.Emerge:
+                OnEmerge();
+                break;
+            case State.Idle:
+                OnIdle();
                 break;
             case State.Move:
                 OnMove();
@@ -164,32 +172,45 @@ public class Ghost : MonoSingleton<Ghost>
 
     
 
-    void OnAppear()
+    void OnEmerge()
     {
 
+    }
+    
+    void OnIdle()
+    {
+        ghostSelect.RaycastTerrain();
+        ghostSelect.RaycastProp();
+        Vector3 mousePoint = ghostSelect.GetMousePoint();
+        // マウスが動いたら移動状態に遷移
+        if (ghostSelect.GetMouseMoved())
+        {
+            ghostMove.IndicatePoint(mousePoint);
+            SetState(State.Move);
+        }
     }
 
     void OnMove()
     {
-        Vector3 mousePoint = ghostInput.GetMousePoint();
-        ghostMove.Rotate(mousePoint);
-        ghostMove.Move(mousePoint);
-        if(CheckClicked(out GameObject clickedObject))
+        ghostSelect.RaycastTerrain();
+        ghostSelect.RaycastProp();
+        Vector3 mousePoint = ghostSelect.GetMousePoint();
+        ghostMove.IndicatePoint(mousePoint);
+        ghostMove.Rotate();
+        ghostMove.Move();
+        // 一定の距離まで近づいたら待機状態に遷移
+        if (ghostMove.IsArrived())
         {
-            SetTarget(clickedObject);
-            SetState(State.Interact);
+            ghostMove.Stop();
+            SetState(State.Idle);
         }
+        
     }
 
     void OnInteract()
     {
-        ghostMove.Rotate(interactData.target.transform.position);
-        ghostMove.Move(interactData.target.transform.position);
-        if(CheckClicked(out GameObject clickedObject))
-        {
-            SetTarget(clickedObject);
-            SetState(State.Interact);
-        }
+        ghostMove.Rotate();
+        ghostMove.Move();
     }
 
     void OnEvent()
@@ -202,19 +223,16 @@ public class Ghost : MonoSingleton<Ghost>
 
     }
 
-    bool CheckClicked(out GameObject clickedObject)
+    
+    bool TryGetPointedObject(out GameObject indicatedObject)
     {
-        if (ghostInput.GetMouseClicked())
+        GameObject hit = ghostSelect.GetHitObject();
+        if (hit)
         {
-            clickedObject = ghostInput.GetClickedObject();
+            indicatedObject = hit;
             return true;
         }
-        clickedObject = null;
+        indicatedObject = null;
         return false;
-    }
-
-    void SetTarget(GameObject target)
-    {
-        interactData.target = target;
     }
 }

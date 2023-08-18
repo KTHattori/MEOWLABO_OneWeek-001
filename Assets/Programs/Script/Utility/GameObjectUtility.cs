@@ -19,4 +19,22 @@ public static class GameObjectUtility
         }
         return result.ToArray();
     }
+
+    public static GameObject[] FindGameObjectsWithLayerMask(LayerMask layerMask)
+    {
+        GameObject[] goArray = GameObject.FindObjectsOfType<GameObject>();
+        List<GameObject> goList = new List<GameObject>();
+        foreach (GameObject go in goArray) {
+            // LayerMask bit check
+            if (((1 << go.layer) & 1 << layerMask) != 0) {
+                goList.Add(go);
+            }
+        }
+        if (goList.Count == 0) {
+            return null;
+        }
+        return goList.ToArray();
+    }
 }
+
+

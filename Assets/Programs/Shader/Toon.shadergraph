@@ -819,10 +819,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 68.79998779296875,
-            "y": 162.3999786376953,
-            "width": 127.99998474121094,
-            "height": 33.600067138671878
+            "x": 65.59999084472656,
+            "y": -58.39997482299805,
+            "width": 139.99996948242188,
+            "height": 33.59999465942383
         }
     },
     "m_Slots": [
@@ -1183,10 +1183,10 @@
     "m_Name": "RimLight",
     "m_ChildObjectList": [
         {
-            "m_Id": "d53aac02f4bc423c8a21892f7b4e9828"
+            "m_Id": "6dac6fabcb4c427bb91193a5fe7e2620"
         },
         {
-            "m_Id": "6dac6fabcb4c427bb91193a5fe7e2620"
+            "m_Id": "d53aac02f4bc423c8a21892f7b4e9828"
         },
         {
             "m_Id": "e4e5915ec26849a1a1177f8d41a1ddbe"
@@ -1526,7 +1526,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "602ded33e890440cb25d24e8f18a3e5b",
     "m_Id": 0,
-    "m_DisplayName": "RimRightCoverage",
+    "m_DisplayName": "RimLightCoverage",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2191,7 +2191,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "a3cb72f79bc24ed488fa907fa8745596",
     "m_Id": 0,
-    "m_DisplayName": "RimRightColor",
+    "m_DisplayName": "RimLightColor",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2602,10 +2602,10 @@
     "m_Guid": {
         "m_GuidSerialized": "731e9ebe-7cfc-4fe1-8b09-5dc30dfeb7cd"
     },
-    "m_Name": "RimRightCoverage",
+    "m_Name": "RimLightCoverage",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "RimRightCoverage",
-    "m_DefaultReferenceName": "_RimRightCoverage",
+    "m_RefNameGeneratedByDisplayName": "RimLightCoverage",
+    "m_DefaultReferenceName": "_RimLightCoverage",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -2947,10 +2947,10 @@
     "m_Guid": {
         "m_GuidSerialized": "8ac71221-02d9-4563-a6d0-20e82e1d4bbf"
     },
-    "m_Name": "RimRightColor",
+    "m_Name": "RimLightColor",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "RimRightColor",
-    "m_DefaultReferenceName": "_RimRightColor",
+    "m_RefNameGeneratedByDisplayName": "RimLightColor",
+    "m_DefaultReferenceName": "_RimLightColor",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

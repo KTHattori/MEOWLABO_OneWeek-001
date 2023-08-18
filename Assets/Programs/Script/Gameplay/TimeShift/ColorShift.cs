@@ -6,15 +6,6 @@ public class ColorShift : MonoBehaviour, ITimeShiftTarget
     [SerializeField]
     private Image image;
 
-    [System.Serializable]
-    public class ColorShiftData
-    {
-        public Gradient colorGradient = new Gradient();
-    }
-
-    [SerializeField]
-    private ColorShiftData colorShiftData = new ColorShiftData();
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +19,7 @@ public class ColorShift : MonoBehaviour, ITimeShiftTarget
 
     public void SetProgress(float progress)
     {
-        image.color = colorShiftData.colorGradient.Evaluate(progress);
+        image.color = TimeShift.ColorShift.colorGradient.Evaluate(progress);
     }
 
 }

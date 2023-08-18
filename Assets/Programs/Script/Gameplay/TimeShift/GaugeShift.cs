@@ -8,15 +8,6 @@ public class GaugeShift : MonoBehaviour, ITimeShiftTarget
     [SerializeField]
     private Image gaugeFill;
 
-    [System.Serializable]
-    public class GaugeShiftData
-    {
-        public Gradient colorGradient = new Gradient();
-    }
-
-    [SerializeField]
-    private GaugeShiftData gaugeShiftData = new GaugeShiftData();
-
     void Reset()
     {
         gaugeFill = GetComponent<Image>();
@@ -32,6 +23,7 @@ public class GaugeShift : MonoBehaviour, ITimeShiftTarget
     public void SetProgress(float progress)
     {
         gaugeFill.fillAmount = progress;
+        gaugeFill.color = TimeShift.GaugeShift.colorGradient.Evaluate(progress);
     }
 
     // Start is called before the first frame update

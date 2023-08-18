@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactable
+  - Terrain
+  - Prop
+  - StaticProp
   layers:
   - Default
   - TransparentFX
@@ -12,11 +15,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerMovementGuide
+  - StaticProp
+  - Prop
+  - Highlighted
+  - Ghost
   - 
   - 
   - 

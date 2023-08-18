@@ -5,7 +5,7 @@ using UnityEngine;
 public class GhostInput : MonoBehaviour
 {
     private Vector3 mousePosition = Vector3.zero;
-    private List<GameObject> hitObjects = new List<GameObject>();
+    private GameObject hitObject = null;
 
     public Vector3 MousePosition { get => mousePosition; }
     void Start()
@@ -21,26 +21,27 @@ public class GhostInput : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit,Mathf.Infinity))
         {
             mousePosition = hit.point;
-            hitObjects.Clear();
-            hitObjects.Add(hit.collider.gameObject);
+            hitObject = hit.collider.gameObject;
         }
         return mousePosition;
     }
 
-    public GameObject GetClickedObject()
+    public GameObject GetHitObject()
     {
-        if (hitObjects.Count > 0)
-        {
-            return hitObjects[0];
-        }
-        return null;
+        return hitObject;
     }
 
     public bool GetMouseClicked()
     {
         return Input.GetMouseButtonDown(0);
+    }
+
+    public bool GetMouseMoved()
+    {
+        // カーソルが移動したかどうか
+        return Input.GetAxis("Mouse X") != 0.0f || Input.GetAxis("Mouse Y") != 0.0f;
     }
 }
