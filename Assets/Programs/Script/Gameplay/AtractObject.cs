@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Interpolation;
 using UnityEngine.Events;
-using Unity.VisualScripting;
 
 public class AtractObject : MonoBehaviour
 {

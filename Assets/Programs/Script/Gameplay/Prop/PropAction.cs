@@ -15,4 +15,16 @@ public class PropAction : MonoBehaviour
     {
         
     }
+
+    public virtual void Action()
+    {
+        Debug.Log("Action");
+    }
+
+    public virtual void Cancel()
+    {
+        Debug.Log("Cancel");
+    }
+
+
 }

@@ -35,7 +35,7 @@ public class Ghost : MonoSingleton<Ghost>
         public float tiltRange = 30.0f;
         public string targetLayerMaskName = "PlayerMovementGuide";
         public float arrivedRange = 0.1f;
-
+        public float interpolationSpeed = 0.15f;
         public LayerMask TargetLayerMask { get { return LayerMask.NameToLayer(targetLayerMaskName); } }
     }
 

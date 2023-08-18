@@ -8,6 +8,8 @@ public class TimeShift : MonoSingleton<TimeShift>
     private bool isMorning = false;
     [SerializeField,Range(0.0f,1.0f),Tooltip("0.0f = Night, 1.0f = Morning"),Header("Time")]
     private float progress = 0.0f;
+    [SerializeField]
+    private float timeToMorning = 10.0f;
 
     [System.Serializable]
     public class ColorShiftData
@@ -142,12 +144,21 @@ public class TimeShift : MonoSingleton<TimeShift>
     // Start is called before the first frame update
     void Start()
     {
-
+        SetProgress(0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if ( !isMorning )
+        {
+            progress += Time.deltaTime / timeToMorning;
+            progress = Mathf.Clamp01(progress);
+            SetProgress(progress);
+            if(progress >= 1.0f)
+            {
+                isMorning = true;
+            }
+        }
     }
 }
