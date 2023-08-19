@@ -28,7 +28,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _GRADIENTDIRECTION: 2
-    m_Colors: []
+    m_Colors:
+    - _MinColor: {r: 0.59362763, g: 0.7946141, b: 0.8679245, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3296520602814543020
 MonoBehaviour:

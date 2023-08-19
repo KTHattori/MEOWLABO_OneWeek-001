@@ -43,7 +43,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FirstShadeStep: 0
+    - _FirstShadeStep: 0.22
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FirstShadeColor: {r: 0.76495194, g: 0.8178109, b: 0.8490566, a: 1}
+    - _SecondShadeColor: {r: 0.71564615, g: 0.80825955, b: 0.8113208, a: 1}
   m_BuildTextureStacks: []

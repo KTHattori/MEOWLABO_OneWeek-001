@@ -32,10 +32,11 @@ public class Ghost : MonoSingleton<Ghost>
     {
         public float minSpeed = 1.0f;
         public float maxSpeed = 2.0f;
-        public float tiltRange = 30.0f;
+        public float arrivedRange = 0.01f;
+        public float interpolationSpeed = 0.05f;
+        public float rotationThreshold = 5.0f;
+        public float rotationTime = 1.0f;
         public string targetLayerMaskName = "PlayerMovementGuide";
-        public float arrivedRange = 0.1f;
-        public float interpolationSpeed = 0.15f;
         public LayerMask TargetLayerMask { get { return LayerMask.NameToLayer(targetLayerMaskName); } }
     }
 
@@ -182,38 +183,50 @@ public class Ghost : MonoSingleton<Ghost>
     
     void OnIdle()
     {
-        ghostSelect.RaycastTerrain();
-        ghostSelect.RaycastProp();
-        Vector3 mousePoint = ghostSelect.GetMousePoint();
+        CastRay();
         // マウスが動いたら移動状態に遷移
-        if (ghostSelect.GetMouseMoved())
+        if (true || ghostSelect.GetMouseMoved())
         {
-            ghostMove.IndicatePoint(mousePoint);
+            IndicatePoint();
             SetState(State.Move);
         }
+        
+        CheckInteract();
     }
 
     void OnMove()
     {
-        ghostSelect.RaycastTerrain();
-        ghostSelect.RaycastProp();
-        Vector3 mousePoint = ghostSelect.GetMousePoint();
-        ghostMove.IndicatePoint(mousePoint);
-        ghostMove.Rotate();
-        ghostMove.Move();
+        CastRay();
+        IndicatePoint();
+        Locomote();
         // 一定の距離まで近づいたら待機状態に遷移
         if (ghostMove.IsArrived())
         {
             ghostMove.Stop();
             SetState(State.Idle);
         }
-        
+
+        CheckInteract();
     }
 
     void OnInteract()
     {
-        ghostMove.Rotate();
-        ghostMove.Move();
+        if(!ghostInteract.HasTarget())
+        {
+            SetState(State.Idle);
+            return;
+        }
+
+        if(ghostInteract.IsTargetInRange())
+        {
+            ghostInteract.Interact();
+            SetState(State.Idle);
+        }
+        else
+        {
+            ghostMove.IndicatePoint(ghostInteract.TargetObject.transform.position);
+            Locomote();
+        }
     }
 
     void OnEvent()
@@ -237,5 +250,37 @@ public class Ghost : MonoSingleton<Ghost>
         }
         indicatedObject = null;
         return false;
+    }
+
+    void CastRay()
+    {
+        ghostSelect.RaycastTerrain();
+        ghostSelect.RaycastProp();
+    }
+
+    void IndicatePoint()
+    {
+        Vector3 mousePoint = ghostSelect.GetMousePoint();
+        ghostMove.IndicatePoint(mousePoint);
+    }
+
+    void Locomote()
+    {
+        ghostMove.Rotate();
+        ghostMove.Move();
+    }
+
+    void CheckInteract()
+    {
+        if(ghostSelect.GetMouseClicked())
+        {
+            if(ghostInteract.HasTarget()) ghostInteract.Cancel();
+
+            if (PropManager.instance.highlightedObject)
+            {
+                ghostInteract.UpdateTarget(PropManager.instance.highlightedObject);
+                SetState(State.Interact);
+            }
+        }
     }
 }

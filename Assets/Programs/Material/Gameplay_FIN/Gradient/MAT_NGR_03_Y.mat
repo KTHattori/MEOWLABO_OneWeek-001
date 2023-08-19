@@ -41,5 +41,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _GRADIENTDIRECTION: 1
-    m_Colors: []
+    m_Colors:
+    - _MaxColor: {r: 0.41051087, g: 0.7075472, b: 0.644819, a: 1}
+    - _MinColor: {r: 0.7830189, g: 0.43952474, b: 0.59984314, a: 1}
   m_BuildTextureStacks: []

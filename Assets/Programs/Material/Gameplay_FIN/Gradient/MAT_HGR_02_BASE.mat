@@ -27,10 +27,11 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _FirstShadeStep: 0.027
     - _GRADIENTDIRECTION: 0
     m_Colors:
-    - _MaxColor: {r: 0.06666667, g: 0.19215687, b: 0.25490198, a: 1}
-    - _MinColor: {r: 0.14901961, g: 0.34509805, b: 0.43529412, a: 1}
+    - _MaxColor: {r: 0.022472408, g: 0.6452736, b: 0.9528302, a: 1}
+    - _MinColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8019941724954150232
 MonoBehaviour:

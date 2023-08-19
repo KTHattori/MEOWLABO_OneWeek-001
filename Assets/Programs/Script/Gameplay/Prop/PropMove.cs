@@ -57,7 +57,7 @@ public class PropMove : MonoBehaviour, IPropAction
         Quaternion targetRotation = Quaternion.LookRotation(targetAngle);
 
         // 向く方向の高さを考慮した角度を計算
-        targetRotation *= Quaternion.Euler(height * Ghost.instance.Move.tiltRange, 0.0f, 0.0f);
+        targetRotation *= Quaternion.Euler(height * 30.0f, 0.0f, 0.0f);
 
         // 自身の角度を計算
         Quaternion currentRotation = transform.rotation;

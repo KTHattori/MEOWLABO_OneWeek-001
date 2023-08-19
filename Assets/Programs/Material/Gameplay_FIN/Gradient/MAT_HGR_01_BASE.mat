@@ -26,10 +26,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _FirstShadeStep: 0
     m_Colors:
-    - _MaxColor: {r: 0.05490196, g: 0.07450981, b: 0.20784314, a: 1}
-    - _MinColor: {r: 0.17647055, g: 0.2980392, b: 0.3960784, a: 1}
+    - _MaxColor: {r: 0.56847394, g: 0.3754005, b: 0.7169812, a: 1}
+    - _MinColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8019941724954150232
 MonoBehaviour:

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TargetProp>k__BackingField: "\u670D"
   <Monday>k__BackingField:
-    content: "\u30CB\u30F3\u30B2\u30F3\u304C\u8EAB\u306B\u3064\u3051\u3066\u3044\u308B\u3082\u306E\u3060\u3002\r\n\u90AA\u9B54\u3058\u3083\u306A\u3044\u306E\u304B\u306A\uFF1F"
+    content: "\u30CB\u30F3\u30B2\u30F3\u304C\u8EAB\u306B\u3064\u3051\u3066\u3044\u308B\u3082\u306E\u3060\u3002\r\n\u90AA\u9B54\u3058\u3083\u306A\u3044\u306E\u304B\u306A!"
     duration: 1
     length: 28
   <Tuesday>k__BackingField:

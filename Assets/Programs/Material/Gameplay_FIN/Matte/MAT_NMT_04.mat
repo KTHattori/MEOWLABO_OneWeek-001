@@ -23,7 +23,7 @@ Material:
   m_Name: MAT_NMT_04
   m_Shader: {fileID: -6465566751694194690, guid: 8429cfb50072ec94a878948a14dd89df,
     type: 3}
-  m_Parent: {fileID: 2100000, guid: bfb3715b76f1817489f519ba82849918, type: 2}
+  m_Parent: {fileID: 2100000, guid: 5696e3759e12b8441b89c9f002b52ed2, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -38,7 +38,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _FirstShadeStep: 0.238
+    - _SecondShadeStep: 0.378
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.81960785, b: 1, a: 1}
+    - _BaseColor: {r: 0.45803666, g: 0.6449367, b: 0.6886792, a: 1}
+    - _FirstShadeColor: {r: 0.3215112, g: 0.5966354, b: 0.8018868, a: 1}
+    - _SecondShadeColor: {r: 0.30709326, g: 0.53922343, b: 0.6320754, a: 1}
   m_BuildTextureStacks: []

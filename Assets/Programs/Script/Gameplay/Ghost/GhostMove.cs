@@ -35,7 +35,11 @@ public class GhostMove : MonoBehaviour
     public void Rotate()
     {
         targetAngle = targetPosition;
-        targetAngle.y = transform.position.y;
+        Vector3 diff = targetAngle - transform.position;
+        diff.Normalize();
+        // forward と diff.y の内積を計算
+        float dot = Vector3.Dot(transform.forward, new Vector3(0.0f,diff.y,0.0f));
+        targetAngle.y = transform.position.y + diff.y * -Mathf.Clamp01(dot * 2);
         transform.LookAt(targetAngle);
     }
 
@@ -53,7 +57,7 @@ public class GhostMove : MonoBehaviour
 
     public void Stop()
     {
-        rb.velocity = Vector3.zero;
+        rb.velocity = rb.velocity * 0.1f;
         rb.isKinematic = true;
     }
 

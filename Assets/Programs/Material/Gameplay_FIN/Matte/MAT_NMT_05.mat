@@ -38,7 +38,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _FirstShadeStep: 0.097
+    - _SecondShadeStep: 0
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.15294118, b: 1, a: 1}
+    - _BaseColor: {r: 0.378471, g: 0.7451831, b: 0.764151, a: 1}
+    - _FirstShadeColor: {r: 0.34242615, g: 0.69117975, b: 0.764151, a: 1}
+    - _SecondShadeColor: {r: 0.15663938, g: 0.47631985, b: 0.6037736, a: 1}
   m_BuildTextureStacks: []

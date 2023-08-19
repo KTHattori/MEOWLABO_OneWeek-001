@@ -18,4 +18,12 @@ public class PropAction : MonoBehaviour
             action.Action();
         }
     }
+
+    public void Cancel()
+    {
+        foreach(IPropAction action in actions)
+        {
+            action.Cancel();
+        }
+    }
 }

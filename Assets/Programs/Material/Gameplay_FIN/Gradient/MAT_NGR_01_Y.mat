@@ -40,8 +40,12 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _FirstShadeStep: 0
     - _GRADIENTDIRECTION: 1
     m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MaxColor: {r: 0.27625492, g: 0.3153616, b: 0.6037736, a: 1}
     - _MaxRange: {r: 2, g: 0, b: 1, a: 0}
+    - _MinColor: {r: 0.13238695, g: 0.8018868, b: 0.7557145, a: 1}
     - _MinRange: {r: -2, g: 3, b: -3, a: 0}
   m_BuildTextureStacks: []

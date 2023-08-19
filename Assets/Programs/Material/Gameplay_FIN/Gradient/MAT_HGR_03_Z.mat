@@ -10,7 +10,7 @@ Material:
   m_Name: MAT_HGR_03_Z
   m_Shader: {fileID: -6465566751694194690, guid: d2125e3eedc758941858640b5c5ffe4f,
     type: 3}
-  m_Parent: {fileID: 2100000, guid: d26ffd9561d42e8438ec1f79f2d48faa, type: 2}
+  m_Parent: {fileID: 2100000, guid: 53f30c2935e8cf74b92c7ec107071eba, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _GRADIENTDIRECTION_Z
@@ -28,7 +28,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _GRADIENTDIRECTION: 2
-    m_Colors: []
+    m_Colors:
+    - _MaxColor: {r: 0.6320754, g: 0.12224099, b: 0.39563054, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4664322260401568548
 MonoBehaviour:

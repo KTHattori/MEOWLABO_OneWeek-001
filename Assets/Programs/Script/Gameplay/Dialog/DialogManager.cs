@@ -68,11 +68,20 @@ public class DialogManager : MonoSingleton<DialogManager>
     void Update()
     {
 #if UNITY_EDITOR
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Q))
         {
-            ChangeContent("Hello World");
+            ChangeContent("明日リリースだよ(よてい)");
         }
-        if(Input.GetKeyUp(KeyCode.Space))
+        if(Input.GetKeyUp(KeyCode.Q))
+        {
+            ClearContent();
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            ChangeContent("Release tomorrow (if as scheduled)");
+        }
+        if(Input.GetKeyUp(KeyCode.E))
         {
             ClearContent();
         }

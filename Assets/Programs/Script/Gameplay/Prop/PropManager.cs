@@ -219,7 +219,6 @@ public class PropManager : MonoSingleton<PropManager>
 
     static public void UpdateHighlighted(GameObject obj)
     {
-        Debug.Log(obj);
         if(obj == null)
         {
             if(highlightedProp != null)

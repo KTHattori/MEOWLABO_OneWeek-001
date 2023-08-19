@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TargetProp>k__BackingField: "\u30D9\u30C3\u30C9\u4E0A\u98FE\u308A"
   <Monday>k__BackingField:
-    content: "\u305F\u305F\u3044\u305F\u3089\u697D\u3057\u305D\u3046\uFF01"
+    content: "\u305F\u305F\u3044\u305F\u3089\u697D\u3057\u305D\u3046!"
     duration: 1
     length: 10
   <Tuesday>k__BackingField:
-    content: "\u305F\u305F\u3044\u305F\u3089\u697D\u3057\u305D\u3046\uFF01\r\n\u30CB\u30F3\u30B2\u30F3\u306F\u3069\u3046\u3057\u3066\u904A\u3070\u306A\u3044\u306E\u304B\u306A\uFF1F"
+    content: "\u305F\u305F\u3044\u305F\u3089\u697D\u3057\u305D\u3046!\r\n\u30CB\u30F3\u30B2\u30F3\u306F\u3069\u3046\u3057\u3066\u904A\u3070\u306A\u3044\u306E\u304B\u306A?"
     duration: 1
     length: 29
   <Wednesday>k__BackingField:

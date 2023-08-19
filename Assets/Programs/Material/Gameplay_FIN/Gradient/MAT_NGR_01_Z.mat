@@ -40,6 +40,9 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _FirstShadeStep: 0.696
     - _GRADIENTDIRECTION: 2
-    m_Colors: []
+    m_Colors:
+    - _MaxColor: {r: 0.115877524, g: 0.19666258, b: 0.7924528, a: 1}
+    - _MinColor: {r: 0.12771448, g: 0.6603774, b: 0.62121093, a: 1}
   m_BuildTextureStacks: []
