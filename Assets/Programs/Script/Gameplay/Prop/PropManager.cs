@@ -20,7 +20,7 @@ public class PropManager : MonoSingleton<PropManager>
     public LayerMask HighlightedPropLayerMask { get => LayerMask.NameToLayer(highlightedPropLayerName); }
     public int SelectableLayerMask { get => 1 << PropLayerMask | 1 << StaticPropLayerMask | 1 << HighlightedPropLayerMask; }
     [SerializeField]
-    private string materialPropertyName = "Highlighted";
+    private string materialPropertyName = "_IsHighlighted";
     public string MaterialPropertyName { get => materialPropertyName; }
     [SerializeField]
     private TextMeshProUGUI textField = null;
@@ -28,8 +28,11 @@ public class PropManager : MonoSingleton<PropManager>
     
     static private Prop highlightedProp = null;
     static public Prop HighlightedProp { get => highlightedProp; }
-
     public GameObject highlightedObject = null;
+
+    [SerializeField]
+    private Transform targetLocator = null;
+    public Transform TargetLocator { get => targetLocator; }
 
     public List<GameObject> propList = new List<GameObject>();
     public List<GameObject> staticPropList = new List<GameObject>();
@@ -216,6 +219,7 @@ public class PropManager : MonoSingleton<PropManager>
 
     static public void UpdateHighlighted(GameObject obj)
     {
+        Debug.Log(obj);
         if(obj == null)
         {
             if(highlightedProp != null)
@@ -232,7 +236,6 @@ public class PropManager : MonoSingleton<PropManager>
         {
             // --- new highlighted prop ---
             highlightedProp = obj.GetComponent<Prop>();
-            highlightedProp.gameObject.layer = LayerMask.NameToLayer(instance.HighlightedPropLayerName);
             highlightedProp.SetHighlighted(true);
         }
         else if(highlightedProp.gameObject != obj)
@@ -240,10 +243,14 @@ public class PropManager : MonoSingleton<PropManager>
             // --- change highlighted prop ---
             highlightedProp.SetHighlighted(false);
             highlightedProp = obj.GetComponent<Prop>();
-            highlightedProp.gameObject.layer = LayerMask.NameToLayer(instance.HighlightedPropLayerName);
             highlightedProp.SetHighlighted(true);
         }
 
         instance.highlightedObject = obj;
+    }
+
+    static public void SetTargetLocator(Transform transform)
+    {
+        instance.targetLocator = transform;
     }
 }

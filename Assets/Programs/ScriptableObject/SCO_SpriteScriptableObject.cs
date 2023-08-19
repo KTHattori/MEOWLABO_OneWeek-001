@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new Sprite(ScriptableObject)", menuName = "ScriptableObjects/Sprite")]
+[CreateAssetMenu(fileName = "new Sprite(ScriptableObject)", menuName = "ScriptableObject/Sprite")]
 public class SCO_SpriteScriptableObject : ScriptableObject
 {
     [field:SerializeField]

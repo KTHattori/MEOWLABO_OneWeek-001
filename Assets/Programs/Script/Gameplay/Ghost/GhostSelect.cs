@@ -28,6 +28,7 @@ public class GhostSelect : MonoBehaviour
         {
             mousePosition = hit.point;
             hitObject = hit.collider.gameObject;
+            Debug.Log(hitObject.name);
         }
         else
         {

@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PropInteract : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private IPropAction[] actions = null;
+
     void Start()
     {
-        
+        actions = GetComponents<IPropAction>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Interact()
     {
-        
+        foreach(IPropAction action in actions)
+        {
+            action.Action();
+        }
     }
 }

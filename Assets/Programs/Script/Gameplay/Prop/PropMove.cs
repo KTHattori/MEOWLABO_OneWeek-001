@@ -2,32 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropMove : MonoBehaviour
+public class PropMove : MonoBehaviour, IPropAction
 {
-    private Prop prop;
-    private Vector3 targetPosition = Vector3.zero;
+    float moveSpeed = 0.5f;
     private Vector3 targetAngle = Vector3.zero;
-    private Vector3 mousePoint = Vector3.zero;
     private Rigidbody rb = null;
+    bool isMoving = false;
+    
+    private Transform TargetLocator
+    {
+        get
+        {
+            return PropManager.instance.TargetLocator;
+        }
+    }
+
     private void Start()
     {
-        prop = GetComponent<Prop>();
-        targetPosition = transform.position;
         rb = GetComponent<Rigidbody>();
     }
 
-    public void IndicatePoint(Vector3 position)
+    private void Update()
     {
-        mousePoint = position;
+        if(isMoving)
+        {
+            Rotate();
+            Move();
+        }
     }
 
-    public void Rotate()
+    public void Action()
+    {
+        isMoving = true;
+    }
+
+    public void Cancel()
+    {
+        isMoving = false;
+    }
+
+    void Rotate()
     {
         // 指定された方向にゆっくりと回転する
         // X軸の回転は自身のいる位置との高さによって変化する
 
         // 向く方向を計算
-        targetAngle = mousePoint - transform.position;
+        targetAngle = TargetLocator.position - transform.position;
 
         // 向く方向の高さを計算
         float height = targetAngle.y;
@@ -53,7 +73,6 @@ public class PropMove : MonoBehaviour
     public void Move()
     {
         // 指定された方向にゆっくりとRigidbodyで移動する
-        targetPosition = mousePoint;
-        // rb.velocity = (targetPosition - transform.position).normalized * prop.Move.speed;
+        rb.velocity = (TargetLocator.position - transform.position).normalized * moveSpeed;
     }
 }

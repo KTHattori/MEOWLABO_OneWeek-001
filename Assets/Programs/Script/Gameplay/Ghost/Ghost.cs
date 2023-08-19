@@ -42,6 +42,9 @@ public class Ghost : MonoSingleton<Ghost>
     [System.Serializable]
     public class InteractData
     {
+        [SerializeField]
+        public Transform locator;
+        
         public float time = 1.0f;
         public float range = 1.0f;
     }

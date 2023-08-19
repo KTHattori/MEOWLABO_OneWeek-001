@@ -2587,7 +2587,7 @@
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
     "m_KeywordType": 0,
-    "m_KeywordDefinition": 0,
+    "m_KeywordDefinition": 1,
     "m_KeywordScope": 1,
     "m_KeywordStages": 2,
     "m_Entries": [],
@@ -3034,10 +3034,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -436.79998779296877,
-            "y": 35.20001983642578,
-            "width": 125.60000610351563,
-            "height": 76.79998779296875
+            "x": -446.3999938964844,
+            "y": 35.19999694824219,
+            "width": 140.80001831054688,
+            "height": 33.599998474121097
         }
     },
     "m_Slots": [

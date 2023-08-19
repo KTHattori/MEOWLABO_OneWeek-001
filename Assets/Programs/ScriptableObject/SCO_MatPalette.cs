@@ -14,7 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/MaterialPalette")]
+[CreateAssetMenu(menuName = "ScriptableObject/MaterialPalette")]
 public class MaterialPalette : ScriptableObject
 {
     [Header("マテリアル")]

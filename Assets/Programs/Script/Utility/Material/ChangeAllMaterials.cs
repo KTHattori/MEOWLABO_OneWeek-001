@@ -82,12 +82,12 @@ public class ChangeAllMaterials : MonoBehaviour,IMaterialChangeable
     {
         foreach(Renderer renderer in renderers)
         {
-            int matLength = renderer.sharedMaterials.Length;
-            for(int i = 0;i < matLength;i++)
+            Material[] mats = renderer.sharedMaterials;
+            for(int i = 0;i < mats.Length;i++)
             {
-                renderer.sharedMaterials[i] = palette.Material[selection];
+                mats[i] = palette.Material[selection];
             }
-            renderer.sharedMaterial = palette.Material[selection];
+            renderer.sharedMaterials = mats;
         }
         appliedMaterial = palette.Material[selection];  
     }
@@ -98,12 +98,12 @@ public class ChangeAllMaterials : MonoBehaviour,IMaterialChangeable
         selection = index;
         foreach(Renderer renderer in renderers)
         {
-            int matLength = renderer.sharedMaterials.Length;
-            for(int i = 0;i < matLength;i++)
+            Material[] mats = renderer.sharedMaterials;
+            for(int i = 0;i < mats.Length;i++)
             {
-                renderer.sharedMaterials[i] = palette.Material[selection];
+                mats[i] = palette.Material[selection];
             }
-            renderer.sharedMaterial = palette.Material[selection];
+            renderer.sharedMaterials = mats;
         }
         if(palette.Material[selection] != null) appliedMaterial = palette.Material[selection];  
     }

@@ -4,27 +4,18 @@ using UnityEngine;
 
 public class PropAction : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private IPropAction[] actions = null;
+
     void Start()
     {
-        
+        actions = GetComponents<IPropAction>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Action()
     {
-        
+        foreach(IPropAction action in actions)
+        {
+            action.Action();
+        }
     }
-
-    public virtual void Action()
-    {
-        Debug.Log("Action");
-    }
-
-    public virtual void Cancel()
-    {
-        Debug.Log("Cancel");
-    }
-
-
 }

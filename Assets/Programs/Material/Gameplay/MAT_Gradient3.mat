@@ -13,7 +13,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _GRADIENTDIRECTION_Y
+  - _GRADIENTDIRECTION_Z
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -101,8 +101,8 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FirstShadeStep: 0.23
-    - _GRADIENTDIRECTION: 1
+    - _FirstShadeStep: 0.271
+    - _GRADIENTDIRECTION: 2
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -117,7 +117,7 @@ Material:
     - _RimLight: 0
     - _RimLightCoverage: 0
     - _SampleTowardU: 0
-    - _SecondShadeStep: 0.5
+    - _SecondShadeStep: 0.444
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -134,7 +134,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FirstShadeColor: {r: 0.9056604, g: 0.89199007, b: 0.89199007, a: 1}
     - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Range: {r: 0, g: 3, b: 0, a: 0}
+    - _Range: {r: -3, g: 3, b: 0, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _SecondShadeColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropDialog : PropAction
+public class PropDialog : MonoBehaviour,IPropAction
 {
-    [SerializeField]
-    private string dialog = "";
-    [SerializeField]
-    private float duration = 1.0f;
+    [SerializeField] private SCO_PropDialog dialogData = null;
 
-    public override void Action()
+    public void Action()
     {
-        DialogManager.instance.ChangeContent(dialog, duration);
+        DialogManager.instance.ChangeContent(dialogData.GetDataAtWeekDay(DayManager.instance.CurrentWeekDay));
     }
 
-    public override void Cancel()
+    public void Cancel()
     {
         DialogManager.instance.ClearContent();
     }

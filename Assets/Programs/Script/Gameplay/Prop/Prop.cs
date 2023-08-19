@@ -4,43 +4,88 @@ using UnityEngine;
 
 public class Prop : MonoBehaviour
 {
-    [SerializeField]
-    private bool isInteractable = false;
-    public bool IsInteractable { get => isInteractable; }
+    private IPropAction[] actions = null;
 
-    [SerializeField]
-    private bool hasDialogue = false;
-    public bool HasDialogue { get => hasDialogue; }
 
-    [SerializeField]
-    List<Renderer> renderers = new List<Renderer>();
-    [SerializeField]
-    List<Material> copiedMaterials = new List<Material>();
-
-    void Reset()
+    [System.Serializable]
+    public class RendererData
     {
-        renderers.Clear();
-        copiedMaterials.Clear();
-        renderers.AddRange(GetComponentsInChildren<Renderer>());
-        foreach(var renderer in renderers)
+        public Renderer renderer;
+        public Material[] materials;
+
+        public RendererData(Renderer renderer, Material[] materials)
         {
-            int mats = renderer.sharedMaterials.Length;
-            for(int i = 0;i < mats;i++)
+            this.renderer = renderer;
+            this.materials = materials;
+        }
+
+        public void SetLayerMask(int layerMask)
+        {
+            renderer.gameObject.layer = layerMask;
+        }
+        public void SetMaterialProperty(string propertyName, float value)
+        {
+            foreach(var material in materials)
             {
-                if(i < copiedMaterials.Count && copiedMaterials[i] != null)
-                {
-                    Destroy(copiedMaterials[i]);
-                }
-                copiedMaterials.Add(null);
+                material.SetFloat(propertyName, value);
+            }
+        }
+
+        public void SetMaterialProperty(string propertyName, bool value)
+        {
+            foreach(var material in materials)
+            {
+                material.SetInt(propertyName, value ? 1 : 0);
+            }
+        }
+
+        public void ReleaseMaterials()
+        {
+            foreach(var material in materials)
+            {
+                Destroy(material);
             }
         }
     }
 
+    [SerializeField]
+    List<RendererData> rendererData = new List<RendererData>();
+
+    void Reset()
+    {
+        for(var i = 0;i < rendererData.Count;i++)
+        {
+            rendererData[i].ReleaseMaterials();
+        }
+        rendererData.Clear();
+        var renderers = GetComponentsInChildren<Renderer>();
+        foreach(var renderer in renderers)
+        {
+            rendererData.Add(new RendererData(renderer, new Material[renderer.sharedMaterials.Length]));
+        }
+        actions = GetComponents<IPropAction>();
+    }
+
     void Start()
     {
-        if(renderers.Count != GetComponentsInChildren<Renderer>().Length)
+        if(rendererData.Count != GetComponentsInChildren<Renderer>().Length)
         {
             Reset();
+        }
+
+        // Fetch renderer data
+        for(int i = 0;i < rendererData.Count;i++)
+        {
+            rendererData[i].materials = new Material[rendererData[i].renderer.sharedMaterials.Length];
+            rendererData[i].materials = rendererData[i].renderer.materials;
+        }
+    }
+
+    public void Action()
+    {
+        foreach(IPropAction action in actions)
+        {
+            action.Action();
         }
     }
 
@@ -52,21 +97,21 @@ public class Prop : MonoBehaviour
 
     void SetLayerMask(bool flag)
     {
-        foreach(var renderer in renderers)
+        for(int i = 0;i < rendererData.Count;i++)
         {
             if(flag)
             {
-                renderer.gameObject.layer = LayerMask.NameToLayer(PropManager.instance.HighlightedPropLayerName);
+                rendererData[i].SetLayerMask(LayerMask.NameToLayer(PropManager.instance.HighlightedPropLayerName));
             }
             else
             {
-                if(PropManager.IsProp(renderer.gameObject))
+                if(PropManager.IsProp(rendererData[i].renderer.gameObject))
                 {
-                    renderer.gameObject.layer = LayerMask.NameToLayer(PropManager.instance.PropLayerName);
+                    rendererData[i].SetLayerMask(LayerMask.NameToLayer(PropManager.instance.PropLayerName));
                 }
-                else if(PropManager.IsStaticProp(renderer.gameObject))
+                else if(PropManager.IsStaticProp(rendererData[i].renderer.gameObject))
                 {
-                    renderer.gameObject.layer = LayerMask.NameToLayer(PropManager.instance.StaticPropLayerName);
+                    rendererData[i].SetLayerMask(LayerMask.NameToLayer(PropManager.instance.StaticPropLayerName));
                 }
             }
         }
@@ -74,64 +119,34 @@ public class Prop : MonoBehaviour
 
     void SetMaterialProperty(string propertyName, float value)
     {
-        // Check if the material has the property
-        for(int i = 0;i < renderers.Count;i++)
+        for(int i = 0;i < rendererData.Count;i++)
         {
-            if(renderers[i].sharedMaterial.HasProperty(propertyName))
+            for(int j = 0;j < rendererData[i].materials.Length;j++)
             {
-                // Destroy the copied material if it exists
-                if(copiedMaterials[i] != null)
-                {
-                    Destroy(copiedMaterials[i]);
-                    copiedMaterials[i] = null;
-                }
-
-                // Create a copy of the material
-                copiedMaterials[i] = Instantiate(renderers[i].sharedMaterial);
-
-                // Set the property
-                copiedMaterials[i].SetFloat(propertyName, value);
-
-                // Set the material
-                renderers[i].sharedMaterial = copiedMaterials[i];
+                if(rendererData[i].materials[j].HasProperty(propertyName)) rendererData[i].materials[j].SetFloat(propertyName, value);
             }
+            rendererData[i].renderer.sharedMaterials = rendererData[i].materials;
         }
     }
 
     void SetMaterialProperty(string propertyName, bool flag)
     {
-        // Check if the material has the property
-        for(int i = 0;i < renderers.Count;i++)
+        for(int i = 0;i < rendererData.Count;i++)
         {
-            if(renderers[i].sharedMaterial.HasProperty(propertyName))
+            for(int j = 0;j < rendererData[i].materials.Length;j++)
             {
-                // Destroy the copied material if it exists
-                if(copiedMaterials[i] != null)
-                {
-                    Destroy(copiedMaterials[i]);
-                    copiedMaterials[i] = null;
-                }
-
-                // Create a copy of the material
-                copiedMaterials[i] = Instantiate(renderers[i].sharedMaterial);
-
-                // Set the property
-                copiedMaterials[i].SetFloat(propertyName, flag ? 1.0f : 0.0f);
-
-                // Set the material
-                renderers[i].sharedMaterial = copiedMaterials[i];
+                if(rendererData[i].materials[j].HasProperty(propertyName)) rendererData[i].materials[j].SetFloat(propertyName, flag ? 1f : 0f);
             }
+            rendererData[i].renderer.sharedMaterials = rendererData[i].materials;
         }
     }
 
     private void OnDestroy()
     {
-        foreach(var material in copiedMaterials)
+        for(var i = 0;i < rendererData.Count;i++)
         {
-            if(material != null)
-            {
-                Destroy(material);
-            }
+            rendererData[i].ReleaseMaterials();
         }
+        rendererData.Clear();
     }
 }

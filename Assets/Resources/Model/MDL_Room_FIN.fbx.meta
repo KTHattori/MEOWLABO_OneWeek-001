@@ -3,9 +3,64 @@ guid: c592a690c13fe2a4fa51e2e50dad2f64
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_121a41_ramp
+    second: {fileID: 2100000, guid: 28bc9c81275329440b5aa811b9be76db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_1f475f_toueiramp
+    second: {fileID: 2100000, guid: 76ceeeb46b8c5894ca1184e2cedee851, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_1f4d6c_ramp
+    second: {fileID: 2100000, guid: 833a02b52a386564cb46236a2bc12168, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_1f4d6c_toueiramp
+    second: {fileID: 2100000, guid: ac7c431eb815a7940a61f084d0a44ae4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_4d6979_ramp
+    second: {fileID: 2100000, guid: ab7f83434290d3244a1f5682593eebcd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_865860_ramp
+    second: {fileID: 2100000, guid: bf4d5b9bc2390914ea47084027892cad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_color_tex
+    second: {fileID: 2100000, guid: 118d4b59633c611428b9717b7b953024, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_cyan_tex
+    second: {fileID: 2100000, guid: 0bc9e86c09feacb41a0ea1574d935fe2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_magenta_tex
+    second: {fileID: 2100000, guid: ce99bfca55d87d2449b82dc964aee680, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: dc9d36e9a88846146bdbdbcf019a41a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mouhu_lambert9SG1
+    second: {fileID: 2100000, guid: 151b3799c83adb449a3dcf40bdae247d, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1

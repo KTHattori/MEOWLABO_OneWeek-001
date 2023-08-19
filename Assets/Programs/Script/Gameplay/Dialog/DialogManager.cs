@@ -28,6 +28,11 @@ public class DialogManager : MonoSingleton<DialogManager>
 
     private float progress = 0.0f;
 
+    public void ChangeContent(SCO_PropDialog.Dialog dialog)
+    {
+        ChangeContent(dialog.content, dialog.duration);
+    }
+
     public void ChangeContent(string content, float duration = DefaultDuration)
     {
         dialogBox.ChangeContent(content);
