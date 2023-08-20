@@ -151,6 +151,7 @@ public class Ghost : MonoSingleton<Ghost>
         emergeData.renderer = GetComponentInChildren<Renderer>();
         SetTransparency(0.0f);
         timer = 0.0f;
+        isEmerged = false;
     }
 
     // Update is called once per frame

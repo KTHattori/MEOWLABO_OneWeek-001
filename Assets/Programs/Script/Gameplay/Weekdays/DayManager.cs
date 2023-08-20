@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DayManager : MonoSingleton<DayManager>
 {
@@ -20,44 +21,70 @@ public class DayManager : MonoSingleton<DayManager>
     FadeTransition dayStartFade = new FadeTransition();
 
     [SerializeField]
-    CutTransition cutOut = new CutTransition();
+    FadeTransition startDayFade = new FadeTransition();
 
-    [SerializeField]
-    CutTransition cutIn = new CutTransition();
+    
 
     public int CurrentDay { get => currentDay; set => currentDay = value; }
     public WeekDay CurrentWeekDay { get => currentWeekDay; set => currentWeekDay = value; }
 
+    private bool dayIsShown = false;
+
+    private int taskRemained = 0;
+
+    private float timer = 0.0f;
+
+    private bool isTitleFade = false;
+
     
 
     void Start()
-    {
-        if(dayChangePanel.gameObject == null)
-        {
-            EmergeGhost();
-            return;
-        }
-        HideDay(0);
-
-        dayStartFade.EventList.onTransitOutInSwitch.events.AddListener(HideDay);
+    {    
+        HideDay();
+        dayStartFade.EventList.onTransitOutEnd.events.AddListener(HideDay);
         dayStartFade.EventList.onTransitEnd.events.AddListener(EmergeGhost);
         dayStartFade.BaseInfo.inOutType = Transition.IOType.OutIn;
 
-        fadeOut.EventList.onTransitEnd.events.AddListener(ShowDay);
-        fadeOut.BaseInfo.inOutType = Transition.IOType.Out;
+        fadeOut.EventList.onTransitOutEnd.events.AddListener(ShowDay);
+        fadeOut.BaseInfo.inOutType = Transition.IOType.OutIn;
 
-        FirstDay();
+        startDayFade.EventList.onTransitOutEnd.events.AddListener(FirstDay);
+
+        currentDay = (int)WeekDay.Monday;
+        currentWeekDay = WeekDay.Monday;
+
+        timer = 0.0f;
+        isTitleFade = true;
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            NextDay();
+            Application.Quit();
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+
+        if(!dayIsShown) return;
+        timer += Time.deltaTime;
+        if(Input.GetKeyDown(KeyCode.Return) || timer > 3.0f)
         {
-            StartDay();
+            StartToday();
+        }
+    }
+
+    public void StartTitle()
+    {
+        dayChangePanel.ActivateObject();
+    }
+
+    void UpdateTitle()
+    {
+        timer += Time.deltaTime;
+        dayChangePanel.gameObject.GetComponent<CanvasGroup>().alpha = 1.0f - timer / 5.0f;
+        if(timer > 5.0f)
+        {
+            HideDay();
+            isTitleFade = false;
         }
     }
 
@@ -77,8 +104,6 @@ public class DayManager : MonoSingleton<DayManager>
     {
         if(dayChangePanel == null) return;
         dayText = dayChangePanel.gameObject.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        currentDay = (int)WeekDay.Monday;
-        currentWeekDay = WeekDay.Monday;
         ShowDay();
     }
 
@@ -89,20 +114,28 @@ public class DayManager : MonoSingleton<DayManager>
         if(currentDay > (int)WeekDay.Friday)
         {
             currentDay = (int)WeekDay.Monday;
+            currentWeekDay = WeekDay.Monday;
+            GameAdministrator.GoTrue();
+            return;
         }
         currentWeekDay = (WeekDay)currentDay;
-        TransitionManager.SetBeginTransit(fadeOut);
+        SceneController.instance.SetLoadSceneName(currentWeekDay.ToString());
+        SceneController.TransitToScene(fadeOut);
     }
 
-    public void StartDay()
+    public void StartToday()
     {
         TransitionManager.SetBeginTransit(dayStartFade);
+        dayIsShown = false;
+        timer = 0.0f;
     }
 
     public void ShowDay(float dummy = 1.0f)
     {
         dayChangePanel.ActivateObject();
         dayText.SetText(currentWeekDay.ToString().ToUpper());
+        dayIsShown = true;
+        timer = 0.0f;
     }
 
     public void HideDay(float dummy = 0.0f)
@@ -111,10 +144,40 @@ public class DayManager : MonoSingleton<DayManager>
         if(dayChangePanel.gameObject.activeSelf == false) return;
         dayText.SetText("");
         dayChangePanel.DeactivateObject();
+        dayIsShown = false;
     }
 
     public void EmergeGhost(float dummy = 1.0f)
     {
         Ghost.StartEmerge();
+    }
+
+    static public void SetWeekday(WeekDay weekDay)
+    {
+        instance.SetDay(weekDay);
+        SceneController.instance.SetLoadSceneName(weekDay.ToString());
+        SceneController.TransitToScene(instance.fadeOut);
+    }
+
+    public void StartFirstDay()
+    {
+        taskRemained = 0;
+        SetDay(WeekDay.Monday);
+        SceneController.instance.SetLoadSceneName(currentWeekDay.ToString());
+        SceneController.TransitToScene(startDayFade);
+    }
+
+    public static void AddRemainingCount(int amount)
+    {
+        instance.taskRemained += amount;
+        if(amount > 0)
+        {
+            GameAdministrator.GoBad();
+        }
+    }
+
+    public static bool IsRemainingZero()
+    {
+        return instance.taskRemained == 0;
     }
 }

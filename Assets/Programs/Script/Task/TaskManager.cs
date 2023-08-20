@@ -40,7 +40,8 @@ public class TaskManager : MonoSingleton<TaskManager>
 
     void OnAllTaskCompleted()
     {
-        Debug.Log("All Task Completed");
+        ReportRemaining();
+        DayManager.instance.NextDay();
     }
 
 
@@ -74,6 +75,11 @@ public class TaskManager : MonoSingleton<TaskManager>
         instance.taskList[propTask].iconImage.color = instance.completedColor;
         instance.completedTaskCount++;
         instance.CheckAllTaskCompleted();
+    }
+
+    static public void ReportRemaining()
+    {
+        DayManager.AddRemainingCount(instance.taskList.Count - instance.completedTaskCount);
     }
 
     bool IsAllTaskCompleted()

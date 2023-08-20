@@ -191,6 +191,7 @@ public class TimeShift : MonoSingleton<TimeShift>
     void OnGetMorning()
     {
         timeShiftActive = false;
+        TaskManager.ReportRemaining();
     }
 
     void StartShift()

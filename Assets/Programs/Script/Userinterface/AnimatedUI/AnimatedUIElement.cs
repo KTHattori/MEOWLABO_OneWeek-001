@@ -715,6 +715,7 @@ namespace AnimatedUI
 
             SetTransition(targetIndex);
             SetTimer(currentTransition.duration);
+            Transit(0.0f);
         }
 
         void InterruptTransit(int targetIndex)

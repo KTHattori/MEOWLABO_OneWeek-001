@@ -22,14 +22,14 @@ MonoBehaviour:
     duration: 1
     length: 12
   <Wednesday>k__BackingField:
-    content: "\u3053\u3053\u306B\u30C6\u30AD\u30B9\u30C8\u3092\u5165\u529B"
+    content: "\u4ECA\u65E5\u306F\u306A\u3093\u306B\u3061\u306A\u306E\u304B\u306A?"
     duration: 1
-    length: 10
+    length: 12
   <Thursday>k__BackingField:
-    content: "\u3053\u3053\u306B\u30C6\u30AD\u30B9\u30C8\u3092\u5165\u529B"
+    content: "\u307C\u304F\u304C\u304C\u521D\u3081\u3066\u3053\u308C\u3092\u898B\u305F\u3068\u304D\u304B\u3089\u3001\n3\u56DE\u304F\u3089\u3044\u53D6\u308A\u304B\u3048\u3089\u308C\u305F\u304B\u306A"
     duration: 1
-    length: 10
+    length: 32
   <Friday>k__BackingField:
-    content: "\u3053\u3053\u306B\u30C6\u30AD\u30B9\u30C8\u3092\u5165\u529B"
+    content: "\u307E\u305F\u3044\u3064\u306E\u65E5\u304B\u4F1A\u3048\u308B\u3068\u3044\u3044\u306D"
     duration: 1
-    length: 10
+    length: 14

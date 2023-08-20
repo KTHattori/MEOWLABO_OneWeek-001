@@ -7,13 +7,13 @@ public class PressToPlay : MonoBehaviour
 {
     public bool isPressable = false;
 
-    public string sceneName = "SampleScene";
+    public string sceneName = "Monday";
     void Update()
     {
         if(isPressable) {
-            if(Input.GetKeyDown(KeyCode.Space)) {
+            if(Input.GetKeyDown(KeyCode.Return)) {
                 // CutToPlay();
-                FadeToPlay();
+                DayManager.instance.StartFirstDay();
                 // WipeToPlay();
             }
         }

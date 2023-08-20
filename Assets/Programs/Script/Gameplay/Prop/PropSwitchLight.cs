@@ -12,6 +12,9 @@ public class PropSwitchLight : MonoBehaviour,IPropAction
     [SerializeField]
     bool isOn = false;
 
+    private float timer = 0.0f;
+    private bool isInteracted = false;
+
     void Reset()
     {
         targetLight = GetComponentInChildren<Light>();
@@ -23,18 +26,38 @@ public class PropSwitchLight : MonoBehaviour,IPropAction
         {
             targetLight = GetComponentInChildren<Light>();
         }
+        timer = 0.0f;
+        isInteracted = false;
+    }
+
+    void Update()
+    {
+        if(targetLight == null) return;
+        if(!isInteracted) return;
+        if(timer < delay)
+        {
+            timer += Time.deltaTime;
+            return;
+        }
+        else
+        {
+            timer = 0.0f;
+            SwitchLight();
+            isInteracted = false;
+        }
     }
 
     void SwitchLight()
     {
         targetLight.enabled = !targetLight.enabled;
         isOn = targetLight.enabled;
+        Debug.Log(isOn);
     }
 
     public void Action(Prop previousProp)
     {
-        Invoke("SwitchLight",delay);
-        Debug.Log("SwitchLight");
+        timer = 0.0f;
+        isInteracted = true;
     }
 
     public void Cancel(Prop nextProp)

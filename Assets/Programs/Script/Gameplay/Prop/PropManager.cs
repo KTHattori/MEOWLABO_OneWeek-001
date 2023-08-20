@@ -40,7 +40,6 @@ public class PropManager : MonoSingleton<PropManager>
     public List<GameObject> staticPropList = new List<GameObject>();
     public Material propMaterial;
     public Material staticPropMaterial;
-#endif
 
     [ContextMenu("Fetch By Layer")]
     public void FetchByLayer()
@@ -200,6 +199,8 @@ public class PropManager : MonoSingleton<PropManager>
             }
         }
     }
+
+    #endif
 
 
     static public bool IsProp(GameObject obj)

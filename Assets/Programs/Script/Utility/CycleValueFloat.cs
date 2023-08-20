@@ -53,6 +53,7 @@ public class CycleValueFloat : MonoBehaviour
         currentTime = 0.0f;
         currentCycleAngle = 0.0f;
         value = offsetValue + minValue;
+        Invoke("Play",7.0f);
     }
 
     void Update()

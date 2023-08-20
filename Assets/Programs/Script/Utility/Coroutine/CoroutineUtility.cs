@@ -38,6 +38,5 @@ public static class CoroutineUtility
     {
         yield return new WaitForSeconds(waitTime);
         action();
-        Debug.Log("act");
     }
 }
