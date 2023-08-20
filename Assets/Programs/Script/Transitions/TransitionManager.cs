@@ -126,6 +126,11 @@ public class TransitionManager : MonoSingleton<TransitionManager>
         if(instance.transitionDictionary.ContainsKey(transitName)) instance.BeginTransit(instance.transitionDictionary[transitName]);
     }
 
+    static public void SetBeginTransit(Transition transition)
+    {
+        instance.BeginTransit(transition);
+    }
+
     public void BeginTransit(Transition transition)
     {
         if(transition == null) return;

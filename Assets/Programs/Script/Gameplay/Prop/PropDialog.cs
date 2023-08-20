@@ -7,13 +7,12 @@ public class PropDialog : MonoBehaviour,IPropAction
 {
     [SerializeField] private SCO_PropDialog dialogData = null;
 
-    public void Action()
+    public void Action(Prop previousProp)
     {
         DialogManager.instance.ChangeContent(dialogData.GetDataAtWeekDay(DayManager.instance.CurrentWeekDay));
-        Debug.Log("Dialog");
     }
 
-    public void Cancel()
+    public void Cancel(Prop nextProp)
     {
         DialogManager.instance.ClearContent();
     }

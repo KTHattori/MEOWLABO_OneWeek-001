@@ -93,10 +93,19 @@ public class SceneController : MonoSingleton<SceneController>
         instance.isInTransition = false;
     }
 
-    void RegisterTransitionEvent(Transition transition)
+    void RegisterTransitionEvent(Transition transition,Transition.IOType ioType = Transition.IOType.OutIn)
     {
-        transition.EventList.onTransitOutInSwitch.waitForEventComplete = true;
-        transition.EventList.onTransitOutInSwitch.events.AddListener(RegisterLoadEventToTransition);
+        switch(ioType)
+        {
+            case Transition.IOType.OutIn:
+                transition.EventList.onTransitOutInSwitch.waitForEventComplete = true;
+                transition.EventList.onTransitOutInSwitch.events.AddListener(RegisterLoadEventToTransition);
+                break;
+            default:
+                transition.EventList.onTransitEnd.events.AddListener(RegisterLoadEventToTransition);
+                
+                break;
+        }
         transition.EventList.onTransitEnd.events.AddListener(CompleteSceneTransit);
     }
 
@@ -124,19 +133,19 @@ public class SceneController : MonoSingleton<SceneController>
         TransitionManager.instance.BeginTransit(transition);
     }
 
-    static public void TransitToScene(string sceneName,Transition.Type transitType,float duration,Easing.Style easeStyle)
+    static public void TransitToScene(string sceneName,Transition.Type transitType,float duration,Easing.Style easeStyle,Transition.IOType inoutType = Transition.IOType.OutIn)
     {
         if(instance.isInTransition) return;
         instance.isInTransition = true;
         instance.SetLoadSceneName(sceneName);
-        if(transitType == Transition.Type.Cut) TransitToSceneCut(sceneName,duration,easeStyle,instance.cutSettings.color,instance.cutSettings.imageSprite);
-        if(transitType == Transition.Type.Fade) TransitToSceneFade(sceneName,duration,easeStyle,instance.fadeSettings.color,instance.fadeSettings.imageSprite);
-        if(transitType == Transition.Type.Wipe) TransitToSceneWipe(sceneName,duration,easeStyle,instance.wipeSettings.color,instance.wipeSettings.imageSprite,instance.wipeSettings.direction);
-        if(transitType == Transition.Type.CircleWipe) TransitToSceneCircleWipe(sceneName,duration,easeStyle,instance.circleWipeSettings.color,instance.circleWipeSettings.imageSprite,instance.circleWipeSettings.origin,instance.circleWipeSettings.clockwise,instance.circleWipeSettings.revertRotation,instance.circleWipeSettings.circleStart);
-        if(transitType == Transition.Type.Slide) TransitToSceneSlide(sceneName,duration,easeStyle,instance.slideSettings.color,instance.slideSettings.imageSprite,instance.slideSettings.direction,instance.slideSettings.revertDirection);
+        if(transitType == Transition.Type.Cut) TransitToSceneCut(sceneName,duration,easeStyle,instance.cutSettings.color,instance.cutSettings.imageSprite,inoutType);
+        if(transitType == Transition.Type.Fade) TransitToSceneFade(sceneName,duration,easeStyle,instance.fadeSettings.color,instance.fadeSettings.imageSprite,inoutType);
+        if(transitType == Transition.Type.Wipe) TransitToSceneWipe(sceneName,duration,easeStyle,instance.wipeSettings.color,instance.wipeSettings.imageSprite,instance.wipeSettings.direction,inoutType);
+        if(transitType == Transition.Type.CircleWipe) TransitToSceneCircleWipe(sceneName,duration,easeStyle,instance.circleWipeSettings.color,instance.circleWipeSettings.imageSprite,instance.circleWipeSettings.origin,instance.circleWipeSettings.clockwise,instance.circleWipeSettings.revertRotation,instance.circleWipeSettings.circleStart,inoutType);
+        if(transitType == Transition.Type.Slide) TransitToSceneSlide(sceneName,duration,easeStyle,instance.slideSettings.color,instance.slideSettings.imageSprite,instance.slideSettings.direction,instance.slideSettings.revertDirection,inoutType);
     }
 
-    static public void TransitToSceneCut(string sceneName,float duration,Easing.Style easeStyle,Color color,Sprite sprite = null)
+    static public void TransitToSceneCut(string sceneName,float duration,Easing.Style easeStyle,Color color,Sprite sprite = null,Transition.IOType inoutType = Transition.IOType.OutIn)
     {
         if(instance.isInTransition) return;
         instance.isInTransition = true;
@@ -146,17 +155,17 @@ public class SceneController : MonoSingleton<SceneController>
         instance.usingCutInstance.Settings.imageSprite = sprite;
         instance.usingCutInstance.BaseInfo.step = instance.transitStep;
 
-        instance.usingCutInstance.TransitInOutType = Transition.IOType.OutIn;
+        instance.usingCutInstance.TransitInOutType = inoutType;
         instance.usingCutInstance.TotalTime = duration;
         instance.usingCutInstance.UseUnscaledTime = true;
         instance.usingCutInstance.EaseType = new Easing.Curve(Easing.Type.InOut,easeStyle);
         
-        instance.RegisterTransitionEvent(instance.usingCutInstance);
+        instance.RegisterTransitionEvent(instance.usingCutInstance,inoutType);
 
         TransitionManager.instance.BeginTransit(instance.usingFadeInstance);
     }
 
-    static public void TransitToSceneFade(string sceneName,float duration,Easing.Style easeStyle,Color color,Sprite sprite = null)
+    static public void TransitToSceneFade(string sceneName,float duration,Easing.Style easeStyle,Color color,Sprite sprite = null,Transition.IOType inoutType = Transition.IOType.OutIn)
     {
         if(instance.isInTransition) return;
         instance.isInTransition = true;
@@ -166,16 +175,16 @@ public class SceneController : MonoSingleton<SceneController>
         instance.usingFadeInstance.Settings.imageSprite = sprite;
         instance.usingFadeInstance.BaseInfo.step = instance.transitStep;
 
-        instance.usingFadeInstance.TransitInOutType = Transition.IOType.OutIn;
+        instance.usingFadeInstance.TransitInOutType = inoutType;
         instance.usingFadeInstance.TotalTime = duration;
         instance.usingFadeInstance.UseUnscaledTime = true;
         instance.usingFadeInstance.EaseType = new Easing.Curve(Easing.Type.InOut,easeStyle);
         
-        instance.RegisterTransitionEvent(instance.usingFadeInstance);
+        instance.RegisterTransitionEvent(instance.usingFadeInstance,inoutType);
 
         TransitionManager.instance.BeginTransit(instance.usingFadeInstance);
     }
-    static public void TransitToSceneWipe(string sceneName,float duration,Easing.Style easeStyle,Color color,Sprite sprite = null,WipeTransition.WipeDirection direction = WipeTransition.WipeDirection.Down)
+    static public void TransitToSceneWipe(string sceneName,float duration,Easing.Style easeStyle,Color color,Sprite sprite = null,WipeTransition.WipeDirection direction = WipeTransition.WipeDirection.Down,Transition.IOType inoutType = Transition.IOType.OutIn)
     {
         if(instance.isInTransition) return;
         instance.isInTransition = true;
@@ -186,17 +195,20 @@ public class SceneController : MonoSingleton<SceneController>
         instance.usingWipeInstance.Settings.direction = direction;
         instance.usingWipeInstance.BaseInfo.step = instance.transitStep;
 
-        instance.usingWipeInstance.TransitInOutType = Transition.IOType.OutIn;
+        instance.usingWipeInstance.TransitInOutType = inoutType;
         instance.usingWipeInstance.TotalTime = duration;
         instance.usingWipeInstance.UseUnscaledTime = true;
         instance.usingWipeInstance.EaseType = new Easing.Curve(Easing.Type.InOut,easeStyle);
         
-        instance.RegisterTransitionEvent(instance.usingWipeInstance);
+        instance.RegisterTransitionEvent(instance.usingWipeInstance,inoutType);
 
         TransitionManager.instance.BeginTransit(instance.usingWipeInstance);
     }
 
-    static public void TransitToSceneCircleWipe(string sceneName,float duration,Easing.Style easeStyle,Color color,Sprite sprite = null,CircleWipeTransition.CircleOrigin origin = CircleWipeTransition.CircleOrigin.MiddleCenter,bool clockWise = true,bool revertOnSwitch = true,Image.Origin360 circleStart = Image.Origin360.Top)
+    static public void TransitToSceneCircleWipe(string sceneName,float duration,Easing.Style easeStyle,Color color,Sprite sprite = null,
+                                                CircleWipeTransition.CircleOrigin origin = CircleWipeTransition.CircleOrigin.MiddleCenter,
+                                                bool clockWise = true,bool revertOnSwitch = true,Image.Origin360 circleStart = Image.Origin360.Top,
+                                                Transition.IOType inoutType = Transition.IOType.OutIn)
     {
         if(instance.isInTransition) return;
         instance.isInTransition = true;
@@ -210,17 +222,17 @@ public class SceneController : MonoSingleton<SceneController>
         instance.usingCircleWipeInstance.Settings.revertRotation = revertOnSwitch;
         instance.usingCircleWipeInstance.BaseInfo.step = instance.transitStep;
 
-        instance.usingCircleWipeInstance.TransitInOutType = Transition.IOType.OutIn;
+        instance.usingCircleWipeInstance.TransitInOutType = inoutType;
         instance.usingCircleWipeInstance.TotalTime = duration;
         instance.usingCircleWipeInstance.UseUnscaledTime = true;
         instance.usingCircleWipeInstance.EaseType = new Easing.Curve(Easing.Type.InOut,easeStyle);
         
-        instance.RegisterTransitionEvent(instance.usingCircleWipeInstance);
+        instance.RegisterTransitionEvent(instance.usingCircleWipeInstance,inoutType);
 
         TransitionManager.instance.BeginTransit(instance.usingCircleWipeInstance);
     }
 
-    static public void TransitToSceneSlide(string sceneName,float duration,Easing.Style easeStyle,Color color,Sprite sprite = null,SlideTransition.SlideDirection direction = SlideTransition.SlideDirection.Up,bool revertDirection = false)
+    static public void TransitToSceneSlide(string sceneName,float duration,Easing.Style easeStyle,Color color,Sprite sprite = null,SlideTransition.SlideDirection direction = SlideTransition.SlideDirection.Up,bool revertDirection = false,Transition.IOType inoutType = Transition.IOType.OutIn)
     {
         if(instance.isInTransition) return;
         instance.isInTransition = true;
@@ -232,12 +244,12 @@ public class SceneController : MonoSingleton<SceneController>
         instance.usingSlideInstance.Settings.revertDirection = revertDirection;
         instance.usingSlideInstance.BaseInfo.step = instance.transitStep;
 
-        instance.usingSlideInstance.TransitInOutType = Transition.IOType.OutIn;
+        instance.usingSlideInstance.TransitInOutType = inoutType;
         instance.usingSlideInstance.TotalTime = duration;
         instance.usingSlideInstance.UseUnscaledTime = true;
         instance.usingSlideInstance.EaseType = new Easing.Curve(Easing.Type.InOut,easeStyle);
         
-        instance.RegisterTransitionEvent(instance.usingSlideInstance);
+        instance.RegisterTransitionEvent(instance.usingSlideInstance,inoutType);
 
         TransitionManager.instance.BeginTransit(instance.usingSlideInstance);
     }

@@ -31,13 +31,13 @@ public class PropSwitchLight : MonoBehaviour,IPropAction
         isOn = targetLight.enabled;
     }
 
-    public void Action()
+    public void Action(Prop previousProp)
     {
         Invoke("SwitchLight",delay);
         Debug.Log("SwitchLight");
     }
 
-    public void Cancel()
+    public void Cancel(Prop nextProp)
     {
         return;
     }

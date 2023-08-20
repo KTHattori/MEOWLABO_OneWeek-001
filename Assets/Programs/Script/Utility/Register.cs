@@ -7,10 +7,13 @@ namespace RegisterObject
 	public class Register : MonoBehaviour 
 	{
 		[SerializeField]
+		bool deactivateAfterRegister = false;
+		[SerializeField]
         UnityEvent onAwake;
 		void Awake()
 		{
 			onAwake.Invoke();
+			if(deactivateAfterRegister) gameObject.SetActive(false);
 		}
 	}
 }

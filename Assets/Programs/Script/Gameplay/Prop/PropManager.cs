@@ -20,11 +20,12 @@ public class PropManager : MonoSingleton<PropManager>
     public LayerMask HighlightedPropLayerMask { get => LayerMask.NameToLayer(highlightedPropLayerName); }
     public int SelectableLayerMask { get => 1 << PropLayerMask | 1 << StaticPropLayerMask | 1 << HighlightedPropLayerMask; }
     [SerializeField]
+    private string holdingPropLayerName = "HoldProp";
+    public string HoldingPropLayerName { get => holdingPropLayerName; }
+    public LayerMask HoldingPropLayeMask { get => LayerMask.NameToLayer(holdingPropLayerName); }
+    [SerializeField]
     private string materialPropertyName = "_IsHighlighted";
     public string MaterialPropertyName { get => materialPropertyName; }
-    [SerializeField]
-    private TextMeshProUGUI textField = null;
-    public TextMeshProUGUI TextField { get => textField; }
     
     static private Prop highlightedProp = null;
     static public Prop HighlightedProp { get => highlightedProp; }
@@ -34,10 +35,12 @@ public class PropManager : MonoSingleton<PropManager>
     private Transform targetLocator = null;
     public Transform TargetLocator { get => targetLocator; }
 
+#if UNITY_EDITOR
     public List<GameObject> propList = new List<GameObject>();
     public List<GameObject> staticPropList = new List<GameObject>();
     public Material propMaterial;
     public Material staticPropMaterial;
+#endif
 
     [ContextMenu("Fetch By Layer")]
     public void FetchByLayer()
@@ -85,9 +88,6 @@ public class PropManager : MonoSingleton<PropManager>
             obj.tag = "StaticProp";
         }
     }
-
-    [ContextMenu("Set Layer")]
-    
 
     [ContextMenu("AddPropComponent")]
     public void AddPropComponent()

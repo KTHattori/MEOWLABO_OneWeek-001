@@ -10,6 +10,13 @@ public class TimeShift : MonoSingleton<TimeShift>
     private float progress = 0.0f;
     [SerializeField]
     private float timeToMorning = 10.0f;
+    [SerializeField]
+    private float timeToActivate = 2.0f;
+    [SerializeField]
+    private CanvasGroup userInterface = null;
+
+    float activationTimer = -1.0f;
+    bool timeShiftActive = false;
 
     [System.Serializable]
     public class ColorShiftData
@@ -134,7 +141,6 @@ public class TimeShift : MonoSingleton<TimeShift>
         {
             n.SetProgress(progress);
         }
-
     }
 
     void OnValidate()
@@ -144,13 +150,32 @@ public class TimeShift : MonoSingleton<TimeShift>
     // Start is called before the first frame update
     void Start()
     {
+        // userInterface = GetComponentInParent<CanvasGroup>();
+        if (userInterface != null)
+        {
+            userInterface.alpha = 0.0f;
+        }
         SetProgress(0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ( !isMorning )
+        if(activationTimer < timeToActivate && activationTimer >= 0.0f)
+        {
+            activationTimer += Time.deltaTime;
+            if (userInterface != null)
+            {
+                userInterface.alpha = activationTimer / timeToActivate;
+            }
+            if(activationTimer >= timeToActivate)
+            {
+                StartShift();
+            }
+            return;
+        }
+
+        if (timeShiftActive)
         {
             progress += Time.deltaTime / timeToMorning;
             progress = Mathf.Clamp01(progress);
@@ -158,7 +183,34 @@ public class TimeShift : MonoSingleton<TimeShift>
             if(progress >= 1.0f)
             {
                 isMorning = true;
+                OnGetMorning();
             }
         }
+    }
+
+    void OnGetMorning()
+    {
+        timeShiftActive = false;
+    }
+
+    void StartShift()
+    {
+        timeShiftActive = true;
+        userInterface.alpha = 1.0f;
+        activationTimer = -1.0f;
+    }
+
+    static public void ActivateShift(float timeToMorning = -1.0f)
+    {
+        if(timeToMorning > 1.0f)
+        {
+            instance.timeToMorning = timeToMorning;
+        }
+        instance.activationTimer = 0.0f;
+    }
+
+    public void SetTimeToMorning(float timeToMorning)
+    {
+        this.timeToMorning = timeToMorning;
     }
 }

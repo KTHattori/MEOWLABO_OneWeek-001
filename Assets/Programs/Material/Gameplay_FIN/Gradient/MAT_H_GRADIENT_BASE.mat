@@ -130,8 +130,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimLight: 0
-    - _RimLightCoverage: 0
+    - _RimLight: 1
+    - _RimLightCoverage: 0.163
     - _SampleTowardU: 0
     - _SecondShadeStep: 0.5
     - _Smoothness: 0.5
@@ -160,7 +160,7 @@ Material:
     - _MinColor: {r: 0, g: 0, b: 0, a: 0}
     - _MinRange: {r: -1, g: 0, b: 0, a: 0}
     - _Range: {r: -1, g: 1, b: 0, a: 0}
-    - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimLightColor: {r: 0.6320754, g: 0.35420075, b: 0.5414396, a: 1}
     - _SecondShadeColor: {r: 0.33018863, g: 0.33018863, b: 0.33018863, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

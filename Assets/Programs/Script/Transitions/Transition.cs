@@ -115,6 +115,28 @@ public abstract class Transition
     public bool IsEventCompleted { get { return eventCompleted; } }
     public InTransitionEvents EventList { get { return baseInfo.inTransitionEventList;}}
     public TransitionBaseInfo BaseInfo { get { return baseInfo; } }
+
+    // static
+    // template function: create instance of transition with type
+    static public Transition Create(Type type)
+    {
+        switch(type)
+        {
+            case Type.Cut:
+                return new CutTransition();
+            case Type.Fade:
+                return new FadeTransition();
+            case Type.Wipe:
+                return new WipeTransition();
+            case Type.CircleWipe:
+                return new CircleWipeTransition();
+            case Type.Slide:
+                return new SlideTransition();
+            default:
+                return null;
+        }
+    }
+    
     
     protected void EnableWaitEventComplete()
     {

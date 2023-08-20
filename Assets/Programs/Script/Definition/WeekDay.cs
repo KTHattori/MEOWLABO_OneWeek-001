@@ -2,6 +2,8 @@ using UnityEngine;
 
 public enum WeekDay
 {
+    [InspectorName("にちようび")]
+    Sunday,
     [InspectorName("げつようび")]
     Monday,
     [InspectorName("かようび")]
@@ -14,6 +16,4 @@ public enum WeekDay
     Friday,
     [InspectorName("どようび")]
     Saturday,
-    [InspectorName("にちようび")]
-    Sunday
 }

@@ -819,6 +819,278 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  currentDay: 1
+  currentWeekDay: 1
+  dayText: {fileID: 0}
+  dayChangePanel: {fileID: 0}
+  fadeOut:
+    name: 
+    baseInfo:
+      targetCanvas: {fileID: 0}
+      totalTime: 0
+      step: 1
+      useUnscaledTime: 0
+      inOutType: 0
+      easeType:
+        type: 0
+        style: 0
+      dontDestroyOnLoad: 0
+      inTransitionEventList:
+        onTransitBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutUpdate:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutInSwitch:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInUpdate:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onEventWait:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+    defaultScreenImage: {fileID: 0}
+    fadeSettings:
+      imageSprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+  dayStartFade:
+    name: 
+    baseInfo:
+      targetCanvas: {fileID: 0}
+      totalTime: 0
+      step: 1
+      useUnscaledTime: 0
+      inOutType: 0
+      easeType:
+        type: 0
+        style: 0
+      dontDestroyOnLoad: 0
+      inTransitionEventList:
+        onTransitBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutUpdate:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutInSwitch:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInUpdate:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onEventWait:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+    defaultScreenImage: {fileID: 0}
+    fadeSettings:
+      imageSprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+  cutOut:
+    name: 
+    baseInfo:
+      targetCanvas: {fileID: 0}
+      totalTime: 0
+      step: 1
+      useUnscaledTime: 0
+      inOutType: 0
+      easeType:
+        type: 0
+        style: 0
+      dontDestroyOnLoad: 0
+      inTransitionEventList:
+        onTransitBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutUpdate:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutInSwitch:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInUpdate:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onEventWait:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+    defaultScreenImage: {fileID: 0}
+    cutSettings:
+      imageSprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+  cutIn:
+    name: 
+    baseInfo:
+      targetCanvas: {fileID: 0}
+      totalTime: 0
+      step: 1
+      useUnscaledTime: 0
+      inOutType: 0
+      easeType:
+        type: 0
+        style: 0
+      dontDestroyOnLoad: 0
+      inTransitionEventList:
+        onTransitBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutUpdate:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitOutInSwitch:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInBegin:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInUpdate:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onTransitInEnd:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+        onEventWait:
+          waitForEventComplete: 0
+          events:
+            m_PersistentCalls:
+              m_Calls: []
+    defaultScreenImage: {fileID: 0}
+    cutSettings:
+      imageSprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &370739632
 Transform:
   m_ObjectHideFlags: 0
@@ -1346,6 +1618,7 @@ MonoBehaviour:
   textField: {fileID: 0}
   highlightedObject: {fileID: 0}
   targetLocator: {fileID: 1793463952}
+  holdingProp: {fileID: 0}
   propList: []
   staticPropList: []
   propMaterial: {fileID: 0}

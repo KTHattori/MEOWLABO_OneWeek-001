@@ -3,7 +3,9 @@ guid: 8d6abf8456eb77e41b46ebb8755d699f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - dayText: {instanceID: 0}
+  - dayChangePanel: {fileID: 11400000, guid: 814f7768b30129d42bd22bbefa51b6f2, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

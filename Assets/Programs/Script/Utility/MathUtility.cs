@@ -13,6 +13,6 @@ public class MathUtility
 
     public static float Posterize(float t,int step)
     {
-        return Mathf.Floor(t * step) / step;
+        return Mathf.Floor(t * step) / (float)step;
     }
 }

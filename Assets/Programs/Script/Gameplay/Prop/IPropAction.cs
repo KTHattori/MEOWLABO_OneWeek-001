@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IPropAction
 {
-    public void Action();
+    public void Action(Prop previousProp = null);
 
-    public void Cancel();
+    public void Cancel(Prop nextProp = null);
 }

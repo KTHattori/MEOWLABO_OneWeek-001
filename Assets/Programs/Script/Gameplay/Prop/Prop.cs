@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Prop : MonoBehaviour
 {
-    private IPropAction[] actions = null;
+    private PropAction action = null;
+    private bool isHold = false;
+
+    public bool IsHold { get { return isHold; } }
 
 
     [System.Serializable]
@@ -63,7 +66,7 @@ public class Prop : MonoBehaviour
         {
             rendererData.Add(new RendererData(renderer, new Material[renderer.sharedMaterials.Length]));
         }
-        actions = GetComponents<IPropAction>();
+        action = GetComponent<PropAction>();
     }
 
     void Start()
@@ -73,6 +76,8 @@ public class Prop : MonoBehaviour
             Reset();
         }
 
+        action = GetComponent<PropAction>();
+
         // Fetch renderer data
         for(int i = 0;i < rendererData.Count;i++)
         {
@@ -81,12 +86,9 @@ public class Prop : MonoBehaviour
         }
     }
 
-    public void Action()
+    void Update()
     {
-        foreach(IPropAction action in actions)
-        {
-            action.Action();
-        }
+
     }
 
     public void SetHighlighted(bool flag)
@@ -102,6 +104,34 @@ public class Prop : MonoBehaviour
             if(flag)
             {
                 rendererData[i].SetLayerMask(LayerMask.NameToLayer(PropManager.instance.HighlightedPropLayerName));
+            }
+            else
+            {
+                if(PropManager.IsProp(rendererData[i].renderer.gameObject))
+                {
+                    rendererData[i].SetLayerMask(LayerMask.NameToLayer(PropManager.instance.PropLayerName));
+                }
+                else if(PropManager.IsStaticProp(rendererData[i].renderer.gameObject))
+                {
+                    rendererData[i].SetLayerMask(LayerMask.NameToLayer(PropManager.instance.StaticPropLayerName));
+                }
+            }
+        }
+    }
+
+    public void SetHold(bool flag)
+    {
+        isHold = flag;
+    }
+
+    public void SetLayerHold(bool flag)
+    {
+        for(int i = 0;i < rendererData.Count;i++)
+        {
+            if(flag)
+            {
+                Debug.Log(PropManager.instance.HoldingPropLayerName);
+                rendererData[i].SetLayerMask(LayerMask.NameToLayer(PropManager.instance.HoldingPropLayerName));
             }
             else
             {

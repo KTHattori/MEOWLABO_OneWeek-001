@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PropAction))]
 public class PropMove : MonoBehaviour, IPropAction
 {
-    float moveSpeed = 0.5f;
+    Prop prop = null;
+    [SerializeField]
+    float moveSpeed = 2.5f;
     private Vector3 targetAngle = Vector3.zero;
+    private Collider col = null;
     private Rigidbody rb = null;
     bool isMoving = false;
     
@@ -19,7 +23,9 @@ public class PropMove : MonoBehaviour, IPropAction
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
+        rb = GetComponentInChildren<Rigidbody>();
+        prop = GetComponent<Prop>();
     }
 
     private void Update()
@@ -31,14 +37,22 @@ public class PropMove : MonoBehaviour, IPropAction
         }
     }
 
-    public void Action()
+    public void Action(Prop previous)
     {
         isMoving = true;
+        col.enabled = false;
+        rb.isKinematic = true;
+        rb.useGravity = false;
+        prop.SetHold(true);      
     }
 
-    public void Cancel()
+    public void Cancel(Prop next)
     {
         isMoving = false;
+        col.enabled = true;
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        prop.SetHold(false);
     }
 
     void Rotate()
@@ -67,12 +81,11 @@ public class PropMove : MonoBehaviour, IPropAction
 
         // 向く方向と自身の角度の差をゆっくりと自身の角度に加える
         transform.rotation *= Quaternion.Slerp(Quaternion.identity, diff, Time.deltaTime);
-
     }
 
-    public void Move()
+    void Move()
     {
         // 指定された方向にゆっくりとRigidbodyで移動する
-        rb.velocity = (TargetLocator.position - transform.position).normalized * moveSpeed;
+        transform.position = Vector3.Lerp(transform.position, TargetLocator.position, Time.deltaTime * moveSpeed);
     }
 }

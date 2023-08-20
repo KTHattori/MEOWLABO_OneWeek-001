@@ -23,8 +23,10 @@ public class Ghost : MonoSingleton<Ghost>
     [System.Serializable]
     public class EmergeData
     {
+        public Renderer renderer;
         public float time = 1.0f;
         public Vector3 position = Vector3.zero;
+        public Interpolation.Easing.Curve curve = Interpolation.Easing.Curve.Linear;
     }
 
     [System.Serializable]
@@ -121,13 +123,21 @@ public class Ghost : MonoSingleton<Ghost>
     private GhostInteract ghostInteract = null;
 
     [SerializeField]
-    private bool isAppear = false;
+    private bool isEmerged = false;
+
+    private float timer = 0.0f;
+
+    void OnValidate()
+    {
+        emergeData.position = transform.position;
+    }
 
     void Reset()
     {
         ghostMove = GetComponent<GhostMove>();
         ghostSelect = GetComponent<GhostSelect>();
         ghostInteract = GetComponent<GhostInteract>();
+        emergeData.renderer = GetComponentInChildren<Renderer>();
     }
 
 
@@ -138,12 +148,15 @@ public class Ghost : MonoSingleton<Ghost>
         ghostMove = GetComponent<GhostMove>();
         ghostSelect = GetComponent<GhostSelect>();
         ghostInteract = GetComponent<GhostInteract>();
+        emergeData.renderer = GetComponentInChildren<Renderer>();
+        SetTransparency(0.0f);
+        timer = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isAppear)
+        if (isEmerged)
         { 
             Act(state);
         }
@@ -178,7 +191,7 @@ public class Ghost : MonoSingleton<Ghost>
 
     void OnEmerge()
     {
-
+        UpdateEmerge();
     }
     
     void OnIdle()
@@ -252,6 +265,26 @@ public class Ghost : MonoSingleton<Ghost>
         return false;
     }
 
+    void UpdateEmerge()
+    {
+        timer += Time.deltaTime;
+        float progress = timer / emergeData.time;
+        if (progress >= 1.0f)
+        {
+            timer = 0.0f;
+            progress = 1.0f;
+            TimeShift.ActivateShift();
+            SetState(State.Idle);
+        }
+        progress = Interpolation.Easing.Ease(0.0f,1.0f,progress,emergeData.curve);
+        SetTransparency(progress);
+    }
+
+    void SetTransparency(float alpha)
+    {
+        emergeData.renderer.sharedMaterial.SetFloat("_Alpha", alpha);
+    }
+
     void CastRay()
     {
         ghostSelect.RaycastTerrain();
@@ -270,6 +303,11 @@ public class Ghost : MonoSingleton<Ghost>
         ghostMove.Move();
     }
 
+    void ResetTimer()
+    {
+        timer = 0.0f;
+    }
+
     void CheckInteract()
     {
         if(ghostSelect.GetMouseClicked())
@@ -282,5 +320,21 @@ public class Ghost : MonoSingleton<Ghost>
                 SetState(State.Interact);
             }
         }
+    }
+
+    static public void StartEmerge()
+    {
+        instance.isEmerged = true;
+        instance.SetState(State.Emerge);
+        instance.SetTransparency(0.0f);
+        Debug.Log("StartEmerge");
+    }
+
+    static public void StartDisappear()
+    {
+        instance.isEmerged = false;
+        instance.SetState(State.Disappear);
+        instance.SetTransparency(1.0f);
+        Debug.Log("StartDisappear");
     }
 }

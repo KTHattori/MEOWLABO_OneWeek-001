@@ -26,7 +26,7 @@ public class PressToPlay : MonoBehaviour
 
     public void FadeToPlay()
     {
-        SceneController.TransitToSceneFade(sceneName,3.0f,Interpolation.Easing.Style.Quart,Color.black);
+        SceneController.TransitToSceneFade(sceneName,3.0f,Interpolation.Easing.Style.Quart,Color.black,null,Transition.IOType.OutIn);
     }
 
     public void WipeToPlay()

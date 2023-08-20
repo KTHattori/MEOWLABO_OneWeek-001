@@ -279,13 +279,13 @@ namespace Interpolation
 			switch (type)
 			{
 			case Easing.Type.Linear:
-				return Linear(startValue,targetValue,0.0f, factor);
+				return Linear(startValue,targetValue,factor,1.0f);
 			case Easing.Type.In:
-				return EaseIn(startValue,targetValue,0.0f, factor, style);
+				return EaseIn(startValue,targetValue,factor,1.0f,style);
 			case Easing.Type.Out:
-				return EaseOut(startValue, targetValue, 0.0f, factor, style);
+				return EaseOut(startValue, targetValue,factor, 1.0f,style);
 			case Easing.Type.InOut:
-				return EaseInOut(startValue, targetValue, 0.0f, factor, style);
+				return EaseInOut(startValue, targetValue,factor, 1.0f,style);
 			default:
 				return 0.0f;
 			}

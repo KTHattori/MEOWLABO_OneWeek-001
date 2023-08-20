@@ -6,6 +6,8 @@ public class GhostInteract : MonoBehaviour
 {
     [SerializeField]
     PropAction target = null;
+    [SerializeField]
+    PropAction previousTarget = null;
 
     public GameObject TargetObject
     {
@@ -43,7 +45,7 @@ public class GhostInteract : MonoBehaviour
         if(target == null) { return; }
         if(target.TryGetComponent<PropAction>(out this.target))
         {
-            Debug.Log("UpdateTarget");
+            
         }
         else
         {
@@ -54,9 +56,12 @@ public class GhostInteract : MonoBehaviour
     public void Interact()
     {
         if(target == null) { return; }
-
-        Debug.Log("Interact");
-        target.Action();
+        if(previousTarget != null)
+        {
+            previousTarget.Cancel(target.GetProp());
+            target.Action(previousTarget.GetProp());
+        }
+        target.Action(null);
         ResetTarget();
     }
 
@@ -64,15 +69,13 @@ public class GhostInteract : MonoBehaviour
     {
         if(target == null) { return; }
         Debug.Log("Cancel");
-        target.GetComponent<PropAction>().Cancel();
+        target.Cancel(previousTarget.GetProp());
+        ResetTarget();
     }
 
     void ResetTarget()
     {
+        previousTarget = target;
         target = null;
     }
-
-    
-    
-
 }
