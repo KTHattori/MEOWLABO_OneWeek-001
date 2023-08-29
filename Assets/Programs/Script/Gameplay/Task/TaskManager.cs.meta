@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bc0d0f5b47c35a242b1888d3f81af642
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - taskCompleteEffect: {fileID: 11400000, guid: d1366c2cfeb2a8a4d941213ac3e24326,
+      type: 2}
+  - taskUI: {instanceID: 0}
+  - taskIconPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

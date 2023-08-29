@@ -743,6 +743,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
 --- !u!1 &232050663040853221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,6 +1704,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
 --- !u!1 &899736674865886120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2808,6 +2812,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
 --- !u!1 &1492400254986206564
 GameObject:
   m_ObjectHideFlags: 0
@@ -4162,6 +4168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
 --- !u!1 &2109375618127947793
 GameObject:
   m_ObjectHideFlags: 0
@@ -4848,6 +4856,7 @@ GameObject:
   - component: {fileID: 8017074542085440565}
   - component: {fileID: 7146139113406299847}
   - component: {fileID: 108625587077672287}
+  - component: {fileID: 4169346786141289744}
   m_Layer: 8
   m_Name: HOLD_Globe
   m_TagString: Prop
@@ -5030,6 +5039,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
+--- !u!114 &4169346786141289744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858536492521517007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1fd18f20f836b4ca690f3263309d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2878143664444001397
 GameObject:
   m_ObjectHideFlags: 0
@@ -6360,6 +6383,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
 --- !u!1 &3375473353847606737
 GameObject:
   m_ObjectHideFlags: 0
@@ -7397,7 +7422,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.75656813, b: 0.8493651, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.02
   m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7730,7 +7755,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.6226415, g: 0.5192595, b: 0.60294974, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.2
   m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8733,6 +8758,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
 --- !u!1 &5439615001031767298
 GameObject:
   m_ObjectHideFlags: 0
@@ -9219,6 +9246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
 --- !u!1 &6226955379612604641
 GameObject:
   m_ObjectHideFlags: 0
@@ -10869,6 +10898,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
 --- !u!1 &6625792878103445505
 GameObject:
   m_ObjectHideFlags: 0
@@ -13269,6 +13300,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
 --- !u!1 &8528853606507386557
 GameObject:
   m_ObjectHideFlags: 0
@@ -14364,6 +14397,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  onPickupSound: {fileID: 11400000, guid: 6c88ab6c610b94744a8eacd849b3f166, type: 2}
+  onDropSound: {fileID: 11400000, guid: 78ceb28c26fa5ed4ba8f28784aa19a7a, type: 2}
 --- !u!1 &9069212572447783456
 GameObject:
   m_ObjectHideFlags: 0

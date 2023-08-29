@@ -12,6 +12,23 @@ public class PropMove : MonoBehaviour, IPropAction
     private Collider col = null;
     private Rigidbody rb = null;
     bool isMoving = false;
+
+    [SerializeField]
+    private SCO_AudioClipRelay onPickupSound;
+    [SerializeField]
+    private SCO_AudioClipRelay onDropSound;
+
+    public AudioClip OnPickupSound {
+        get {
+            return onPickupSound.AudioClip;
+        }
+    }
+
+    public AudioClip OnDropSound {
+        get {
+            return onDropSound.AudioClip;
+        }
+    }
     
     private Transform TargetLocator
     {
@@ -43,7 +60,8 @@ public class PropMove : MonoBehaviour, IPropAction
         col.enabled = false;
         rb.isKinematic = true;
         rb.useGravity = false;
-        prop.SetHold(true);      
+        prop.SetHold(true);
+        if(onPickupSound) AudioManager.instance.PlaySFX(onPickupSound.AudioClip,onPickupSound.Volume);
     }
 
     public void Cancel(Prop next)
@@ -53,6 +71,7 @@ public class PropMove : MonoBehaviour, IPropAction
         rb.isKinematic = false;
         rb.useGravity = true;
         prop.SetHold(false);
+        if(onDropSound) AudioManager.instance.PlaySFX(onDropSound.AudioClip,onDropSound.Volume);
     }
 
     void Rotate()

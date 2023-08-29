@@ -132,6 +132,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2013581733629293065, guid: 3815eb3d09b53ec4da7728c38c2ebb0e,
+        type: 3}
+      propertyPath: taskUI
+      value: 
+      objectReference: {fileID: 664276298}
     - target: {fileID: 2894695776781174393, guid: 3815eb3d09b53ec4da7728c38c2ebb0e,
         type: 3}
       propertyPath: m_IsActive
@@ -367,7 +372,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 466.341, y: -71.483, z: -44.733}
 --- !u!114 &410087042
 MonoBehaviour:
@@ -435,7 +440,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &622758984
 MonoBehaviour:
@@ -1064,9 +1069,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1110710848
+--- !u!1 &1139334208
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1074,8 +1079,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1110710850}
-  - component: {fileID: 1110710849}
+  - component: {fileID: 1139334210}
+  - component: {fileID: 1139334209}
   m_Layer: 0
   m_Name: TaskManager
   m_TagString: Untagged
@@ -1083,39 +1088,41 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1110710849
+--- !u!114 &1139334209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110710848}
+  m_GameObject: {fileID: 1139334208}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc0d0f5b47c35a242b1888d3f81af642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  taskCompleteEffect: {fileID: 11400000, guid: d1366c2cfeb2a8a4d941213ac3e24326, type: 2}
+  taskCompleteSound: {fileID: 11400000, guid: f0273196a0647e7469aa10e2d8044cec, type: 2}
   taskUI: {fileID: 664276298}
   taskIconPrefab: {fileID: 5561362457197149641, guid: 955116db4272cb64d92f504db99ecbf7,
     type: 3}
   completedColor: {r: 1, g: 1, b: 1, a: 1}
   onGoingColor: {r: 0.9811321, g: 0.81517506, b: 0.32766104, a: 1}
   notStartedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
---- !u!4 &1110710850
+--- !u!4 &1139334210
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110710848}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1139334208}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1147758084
 GameObject:
@@ -1495,7 +1502,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1793463951
 PrefabInstance:

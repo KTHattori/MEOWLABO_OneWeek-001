@@ -16,6 +16,7 @@ using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Task = System.Threading.Tasks.Task;
 using System.Reflection;
+using UnityEditor.Compilation;
 
 
 namespace SingularityGroup.HotReload.Editor {
@@ -36,7 +37,8 @@ namespace SingularityGroup.HotReload.Editor {
         internal static bool compileError => _compileError;
         
         internal static PatchStatus patchStatus = PatchStatus.None;
-        
+
+        static bool quitting;
         static EditorCodePatcher() {
             if(init) {
                 //Avoid infinite recursion in case the static constructor gets accessed via `InitPatchesBlocked` below
@@ -63,6 +65,16 @@ namespace SingularityGroup.HotReload.Editor {
             if (ServerHealthCheck.I.IsServerHealthy) {
                 EditorApplication.delayCall += TryPrepareBuildInfo;
             }
+            // reset in case last session didn't shut down properly
+            CheckEditorSettings();
+            EditorApplication.quitting += ResetSettingsOnQuit;
+            CompilationPipeline.compilationFinished += obj => {
+                // reset in case package got removed
+                // if it got removed, it will not be enabled again
+                // if it wasn't removed, settings will get handled by OnIntervalMainThread
+                AutoRefreshSettingChecker.Reset();
+                ScriptCompilationSettingChecker.Reset();
+            };
             DetectEditorStart();
             DetectVersionUpdate();
             SingularityGroup.HotReload.Demo.Demo.I = new EditorDemo();
@@ -70,6 +82,22 @@ namespace SingularityGroup.HotReload.Editor {
             if(EditorApplication.isPlayingOrWillChangePlaymode) {
                 CodePatcher.I.InitPatchesBlocked(patchesFilePath);
             }
+
+#pragma warning disable CS0612 // Type or member is obsolete
+            if (HotReloadPrefs.RateAppShownLegacy) {
+                HotReloadPrefs.RateAppShown = true;
+            }
+            if (!File.Exists(HotReloadPrefs.showOnStartupPath)) {
+                var showOnStartupLegacy = HotReloadPrefs.GetShowOnStartupEnum();
+                HotReloadPrefs.ShowOnStartup = showOnStartupLegacy;
+            }
+#pragma warning restore CS0612 // Type or member is obsolete
+        }
+
+        public static void ResetSettingsOnQuit() {
+            quitting = true;
+            AutoRefreshSettingChecker.Reset();
+            ScriptCompilationSettingChecker.Reset();
         }
 
         public static bool autoRecompileUnsupportedChangesSupported;
@@ -249,6 +277,9 @@ namespace SingularityGroup.HotReload.Editor {
         }
 
         static void CheckEditorSettings() {
+            if (quitting) {
+                return;
+            }
             CheckAutoRefresh();
             CheckScriptCompilation();
         }
