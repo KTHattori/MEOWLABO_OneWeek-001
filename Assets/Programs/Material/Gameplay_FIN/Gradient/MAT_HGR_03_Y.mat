@@ -29,6 +29,7 @@ Material:
     m_Floats:
     - _FirstShadeStep: 0.073
     - _GRADIENTDIRECTION: 1
+    - _IsHighlighted: 0
     - _SecondShadeStep: 0
     m_Colors:
     - _MaxColor: {r: 0.735849, g: 0.5588287, b: 0.6486217, a: 0}

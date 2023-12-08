@@ -40,6 +40,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _FirstShadeStep: 0.115
+    - _IsHighlighted: 0
     m_Colors:
     - _BaseColor: {r: 0.4557227, g: 0.69792116, b: 0.7264151, a: 1}
     - _FirstShadeColor: {r: 0.29792634, g: 0.5621816, b: 0.6132076, a: 1}
